@@ -12,6 +12,10 @@ public class FornecedorController {
 		FornecedorBO fornecedorBO = new FornecedorBO();
 		fornecedorBO.cadastrarFornecedor(fornecedorVO);
 	}
+public void cadastrarFornecedorFuncionario(FornecedorVO fornecedorVO) throws Exception {
+		FornecedorBO fornecedorBO = new FornecedorBO();
+		fornecedorBO.cadastrarFornecedorFuncionario(fornecedorVO);
+	}
 
 	public void excluirFornecedor(int codigo) throws Exception {
 		FornecedorBO fornecedorBO = new FornecedorBO();

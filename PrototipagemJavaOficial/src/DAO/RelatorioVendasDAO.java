@@ -22,11 +22,11 @@ public class RelatorioVendasDAO {
 	public RelatorioVendasVO getDadosRelatoriosVendas(Date datainicio, Date datafinal) throws Exception {
 		RelatorioVendasVO relatorio = new RelatorioVendasVO();
 		PreparedStatement preparedStatement = this.connection.prepareStatement(
-				"Select produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join produto on(vendas.Codigo_Produto = produto.Codigo_Produto) where data_venda between ? and ? and produto.tipo_produto='CONGELADO';");
+				"Select Produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join Produto on(vendas.Codigo_Produto = Produto.Codigo_Produto) where data_venda between ? and ? and Produto.tipo_produto='CONGELADO';");
 		PreparedStatement preparedStatement2 = this.connection.prepareStatement(
-				"Select produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join produto on(vendas.Codigo_Produto = produto.Codigo_Produto) where data_venda between ? and ? and produto.tipo_produto='RESFRIADO'");
+				"Select Produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join Produto on(vendas.Codigo_Produto = Produto.Codigo_Produto) where data_venda between ? and ? and Produto.tipo_produto='RESFRIADO'");
 		PreparedStatement preparedStatement3 = this.connection.prepareStatement(
-				"Select produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join produto on(vendas.Codigo_Produto = produto.Codigo_Produto) where data_venda between ? and ? and produto.tipo_produto='TEMPERADO'");
+				"Select Produto.tipo_produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join Produto on(vendas.Codigo_Produto = Produto.Codigo_Produto) where data_venda between ? and ? and Produto.tipo_produto='TEMPERADO'");
 		java.util.Date dataUtil = new java.util.Date();
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 
@@ -56,7 +56,8 @@ public class RelatorioVendasDAO {
 			relatorio.setCongelados(resultSet.getInt("Relatorios"));
 			relatorio.setResfriados(resultSet1.getInt("Relatorios"));
 			relatorio.setTemperados(resultSet2.getInt("Relatorios"));
-			
+			relatorio.setDataInicio(datainicio);
+			relatorio.setDataFinal(datafinal);
 
 		}
 		

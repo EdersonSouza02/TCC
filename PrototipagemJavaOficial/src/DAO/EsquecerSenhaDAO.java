@@ -25,20 +25,28 @@ public class EsquecerSenhaDAO {
 		gerador.nextInt(9);
 		int senha = gerador.nextInt(999999999);
 		
-
+		
 		PreparedStatement preparedStatement = this.connection
-				.prepareStatement("update Usuario set Senha_Usuario =AES_ENCRYPT(?,'chave') where Login_Usuario = ? and Email_Usuario = ?");
+				.prepareStatement("update Usuario set Senha_Usuario = MD5(?) where Login_Usuario = ? and Email_Usuario = ?");
 		preparedStatement.setString(1, String.valueOf(senha));
 		preparedStatement.setString(2, esquecerSenha.getLogin());
 		preparedStatement.setString(3, esquecerSenha.getEmail());
 
 
-		preparedStatement.executeUpdate();
+		if(preparedStatement.executeUpdate() == 1) {
+			
+			JavaMailApp email = new JavaMailApp();
+			
+			email.enviarEmail(esquecerSenha.getLogin(), senha, esquecerSenha.getEmail());
+			JOptionPane.showMessageDialog(null, "Email enviado com sucesso");
+			
+		}else {
+			JOptionPane.showMessageDialog(null, "Verifique se as informações estão corretas ou se o usuario realmente existe");
+		}
 		
-		JavaMailApp email = new JavaMailApp();
 		
-		email.enviarEmail(esquecerSenha.getLogin(), senha, esquecerSenha.getEmail());
-		JOptionPane.showMessageDialog(null, "Email enviado com sucesso");
+		
+
 
 	}
 }

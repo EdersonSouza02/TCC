@@ -1,14 +1,12 @@
 package Validator;
 
-import java.util.InputMismatchException;
-import java.util.regex.Pattern;
-
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-
-import org.hamcrest.Matcher;
-
 import DAO.FornecedorDAO;
 import VO.FornecedorVO;
+import View.CadastroClienteView;
+import View.CadastroFornecedorView;
 
 public class FornecedorValidation {
 	ValidarNome validarNome = new ValidarNome();
@@ -22,45 +20,82 @@ public class FornecedorValidation {
 	ValidarCelular validarCelular = new ValidarCelular();
 	ValidarCodigo validarCodigo = new ValidarCodigo();
 
-	public boolean validarCodigoFornecedor(FornecedorVO fornecedorVO) {
+	public boolean validarDados(FornecedorVO fornecedorVO) throws Exception {
+		boolean retorno = true;
+		boolean retornoCodigo = validarCodigoFornecedor(fornecedorVO.getCodigoFornecedor());
+		boolean retornoNome = validarNome.validaNomeFornecedor(fornecedorVO.getEmpresa());
+		boolean retornoCnpj = validarCnpj.validaCnpjFornecedor(fornecedorVO.getCnpj());
+		boolean retornoEmail = validarEmail.validaEmailFornecedor(fornecedorVO.getEmail());
+		// boolean retornoCep = validarCep.validaCepFornecedor(fornecedorVO.getCep());
+		boolean retornoRua = validarRua.validaRuaFornecedor(fornecedorVO.getRua());
+		boolean retornoNumero = validarNumero.validaNumeroFornecedor(fornecedorVO.getNumero());
+		boolean retornoTelefone = validarTelefone.validaTelefoneFornecedor(fornecedorVO.getTelefone());
+		boolean retornoCelular = validarCelular.validaCelularFornecedor(fornecedorVO.getTelefoneCelular());
+		boolean retornoNextel = validarNextel.validaNextelFornecedor(fornecedorVO.getNextel());
 
+		if (retornoCodigo && retornoNome && retornoCnpj && retornoEmail /* && retornoCep */ && retornoRua
+				&& retornoNumero && retornoTelefone && retornoCelular && retornoNextel) {
+			retorno = true;
+		} else {
+			retorno = false;
+			throw new Exception("Um dos retornos é falso");
+		}
+		return retorno;
+	}
+	
+	public boolean validarDadosAlterar(FornecedorVO fornecedorVO) throws Exception {
+		boolean retorno = true;
+		boolean retornoCodigo = validarCodigoFornecedor(fornecedorVO.getCodigoFornecedor());
+		boolean retornoNome = validarNome.validaNomeFornecedor(fornecedorVO.getEmpresa());
+		boolean retornoCnpj = validarCnpj.validaCnpjFornecedor(fornecedorVO.getCnpj());
+		boolean retornoEmail = validarEmail.validaEmailFornecedor(fornecedorVO.getEmail());
+		// boolean retornoCep = validarCep.validaCepFornecedor(fornecedorVO.getCep());
+		boolean retornoRua = validarRua.validaRuaFornecedor(fornecedorVO.getRua());
+		boolean retornoNumero = validarNumero.validaNumeroFornecedor(fornecedorVO.getNumero());
+		boolean retornoTelefone = validarTelefone.validaTelefoneFornecedor(fornecedorVO.getTelefone());
+		boolean retornoCelular = validarCelular.validaCelularFornecedor(fornecedorVO.getTelefoneCelular());
+		boolean retornoNextel = validarNextel.validaNextelFornecedor(fornecedorVO.getNextel());
+
+		if (retornoCodigo && retornoNome && retornoCnpj && retornoEmail /* && retornoCep */ && retornoRua
+				&& retornoNumero && retornoTelefone && retornoCelular && retornoNextel) {
+			retorno = true;
+		} else {
+			retorno = false;
+			throw new Exception("Um dos retornos é falso");
+		}
+		return retorno;
+	}
+
+
+	public boolean validarCodigoFornecedor(int codigo) {
+		boolean retorno = true;
+		CadastroFornecedorView.lblId.setForeground(Color.BLACK);
+		if (codigo == 0) {
+			CadastroFornecedorView.lblId.setForeground(Color.RED);
+			retorno = false;
+		} else if(codigo < 0){
+			JOptionPane.showMessageDialog(null, "Digite um código válido", "Inválido", JOptionPane.WARNING_MESSAGE);
+			CadastroFornecedorView.lblId.setForeground(Color.BLACK);
+			retorno = false;
+		}else {
+			CadastroFornecedorView.lblId.setForeground(Color.BLACK);
 			try {
 				FornecedorDAO fornecedorDAO = new FornecedorDAO();
-				boolean retornoCodigo_Fornecedor = fornecedorDAO.verificaExistenciaCodigo_Fornecedor(fornecedorVO.getCodigoFornecedor());
+				boolean retornoCodigo_Fornecedor = fornecedorDAO.verificaExistenciaCodigo_Fornecedor(codigo);
 				if (retornoCodigo_Fornecedor == true) {
 					retornoCodigo_Fornecedor = true;
+					retorno = true;
 				} else {
 					retornoCodigo_Fornecedor = false;
-					JOptionPane.showMessageDialog(null, "Código do Fornecedor já Castrado", "Código Inválido",
+					JOptionPane.showMessageDialog(null, "Fornecedor já Castrado", "Código Inválido",
 							JOptionPane.WARNING_MESSAGE);
+					retorno = false;
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-	return true;
-
-	}
-
-	public boolean validarDados(FornecedorVO fornecedorVO) {
-
-		boolean retornoCodigo = validarCodigo.validaCodigo(fornecedorVO.getCodigoFornecedor());
-		boolean retornoNome = validarNome.validaNome(fornecedorVO.getEmpresa());
-		boolean retornoCnpj = validarCnpj.validaCnpj(fornecedorVO.getCnpj());
-		boolean retornoEmail = validarEmail.validaEmail(fornecedorVO.getEmail());
-		boolean retornoCep = validarCep.validaCep(fornecedorVO.getCep());
-		boolean retornoRua = validarRua.validaRua(fornecedorVO.getRua());
-		boolean retornoNumero = validarNumero.validaNumero(fornecedorVO.getNumero());
-		boolean retornoTelefone = validarTelefone.validaTelefone(fornecedorVO.getTelefone());
-		boolean retornoCelular = validarCelular.validaCelular(fornecedorVO.getTelefoneCelular());
-		boolean retornoNextel = validarNextel.validaNextel(fornecedorVO.getNextel());
-
-		if (retornoCodigo == true && retornoNome == true && retornoCnpj == true && retornoEmail == true && retornoCep == true &&retornoRua == true  
-				&& retornoNumero == true && retornoTelefone == true && retornoCelular == true  && retornoNextel == true) {
-			return true;
 		}
-		return false;
-
+		return retorno;
 	}
 
 }

@@ -2,47 +2,30 @@ package Validator;
 
 import VO.VendasVO;
 
+
 public class VendasValidation {
-
+	
+	ProdutoValidation produtoValidation = new ProdutoValidation();
+	ClienteValidation clienteValidation = new ClienteValidation();
+	ValidarPrecoVenda precoVenda = new ValidarPrecoVenda();
+	ValidarPeso validarPeso = new ValidarPeso();
+	ValidarQuantidadeProduto quantidadeProduto =new ValidarQuantidadeProduto();
+	ValidarData validaData = new ValidarData();
+	
 	public boolean validarVendas(VendasVO vendasVO) throws Exception {
-		boolean retorno = true;
-
-		if (vendasVO.getCodigo() < 0) {
+ 		boolean retorno = true;
+ 		boolean retornoCliente = clienteValidation.validaCodigoClienteVenda(vendasVO.getCodigoCliente());
+		boolean retornoProduto = produtoValidation.validarCodigoProdutoVenda(vendasVO.getCodigoProduto());
+		boolean retornoPrecoVenda = precoVenda.validaPrecoVenda(vendasVO.getValor());
+		boolean retornoPesoVenda = validarPeso.validaPesoProdutoVenda(vendasVO.getPeso());
+		boolean retornoQtde = quantidadeProduto.validaQtde(vendasVO.getQuantidade());
+		boolean retornoData = validaData.validarData(vendasVO.getDataVenda());
+		if(retornoCliente && retornoProduto && retornoPrecoVenda && retornoPesoVenda && retornoQtde && retornoData) {
+			retorno = true;
+		}else {
 			retorno = false;
-			throw new Exception("Favor informar um código maior que 0");
+			throw new Exception("Um dos retornos é falso");
 		}
-		if (vendasVO.getCodigo() == 0) {
-			retorno = false;
-			throw new Exception("Favor informar um código válido");
-		}
-		if (vendasVO.getCodigoProduto() == 0) {
-			retorno = false;
-			throw new Exception("Favor informar um código válido");
-		}
-		if (vendasVO.getCodigoProduto() < 0) {
-			retorno = false;
-			throw new Exception("Favor informar um código maior que 0");
-		}
-		if (vendasVO.getDataVenda() == null) {
-			retorno = false;
-			throw new Exception("Favor informar a data da venda");
-		}
-		
-		if (vendasVO.getPeso() <= 0) {
-			retorno = false;
-			throw new Exception("Favor informar o peso do produto");
-		}
-		if (vendasVO.getQuantidade() <= 0) {
-			retorno = false;
-			throw new Exception("Favor informar a quantidade");
-		}
-		if (vendasVO.getValor() <= 0) {
-			retorno = false;
-			throw new Exception("Favor informar o valor do produto");
-		}
-
 		return retorno;
-
 	}
-
 }

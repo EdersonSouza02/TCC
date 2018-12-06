@@ -1,17 +1,20 @@
 package Validator;
 
-import javax.swing.JOptionPane;
+import java.awt.Color;
+import View.CadastroClienteView;
 
 public class ValidarPagamento {
 	
-	public boolean validaPagamento(String formaDePagamento){
+	public boolean validaPagamentoCliente(String formaDePagamento){
+		CadastroClienteView.lblFormaDePagamento.setForeground(Color.BLACK);
 		if(formaDePagamento.trim().equals("")){
-			JOptionPane.showMessageDialog(null,
-					"Escolho a forma de pagamento para esse Cliente");
+			CadastroClienteView.lblFormaDePagamento.setForeground(Color.RED);
 			return false;
 		}else{
+			CadastroClienteView.lblFormaDePagamento.setForeground(Color.BLACK);
 			return true;
 		}
+		
 	}
 
 }

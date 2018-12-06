@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class ViewEsquecerSenha extends JFrame {
 
@@ -99,6 +100,7 @@ public class ViewEsquecerSenha extends JFrame {
 		label_1.setIcon(new ImageIcon(ViewEsquecerSenha.class.getResource("/imagens/icons8-nova-mensagem-25.png")));
 		
 		JLabel lblVoltar = new JLabel("Voltar");
+		lblVoltar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -112,10 +114,14 @@ public class ViewEsquecerSenha extends JFrame {
 		lblVoltar.setForeground(Color.WHITE);
 		
 		JButton btnEnviar = new JButton("Enviar");
+		btnEnviar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnEnviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					criarSenha();
+					
+					txtEmail.setText("");
+					txtUsuario.setText("");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

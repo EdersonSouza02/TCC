@@ -24,7 +24,7 @@ public class EstoqueDAO {
 	public List<EstoqueVO> listarProdutos() throws Exception {
 		List<EstoqueVO> retorno = new ArrayList<EstoqueVO>();
 
-		PreparedStatement preparedStatement = this.connection.prepareStatement("Select  produto.codigo_produto, produto.nome_produto, produto.tipo_produto, Estoque.Peso_Produto, Sum(Estoque.Quantidade_Produto) as 'qtd_total' From Produto inner join Estoque on(Produto.Codigo_Produto = Estoque.codigo_Produto) group by produto.codigo_produto, produto.nome_produto ");
+		PreparedStatement preparedStatement = this.connection.prepareStatement("Select  produto.codigo_produto, produto.nome_produto, produto.tipo_produto, Sum(Estoque.Peso_Produto) as 'peso_total', Sum(Estoque.Quantidade_Produto) as 'qtd_total' From Produto inner join Estoque on(Produto.Codigo_Produto = Estoque.codigo_Produto) group by produto.codigo_produto, produto.nome_produto ");
 		ResultSet resultSet = preparedStatement.executeQuery();
 
 		while (resultSet.next()) {
@@ -32,7 +32,7 @@ public class EstoqueDAO {
 			EstoqueVO estoqueVO = new EstoqueVO();
 			estoqueVO.setCodigo(resultSet.getInt("produto.codigo_produto"));
 			estoqueVO.setNome(resultSet.getString("produto.nome_produto"));
-			estoqueVO.setPeso(resultSet.getDouble("Estoque.Peso_Produto"));
+			estoqueVO.setPeso(resultSet.getDouble("peso_total"));
 			estoqueVO.setQuantidade(resultSet.getInt("qtd_total"));
 			estoqueVO.setTipo(resultSet.getString("produto.tipo_produto"));
 			retorno.add(estoqueVO);

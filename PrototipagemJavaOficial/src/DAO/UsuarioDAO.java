@@ -21,7 +21,7 @@ public class UsuarioDAO {
 
 	public void cadastrarUsuario(UsuarioVO uVO) throws Exception {
 		PreparedStatement preparedStatement = this.connection.prepareStatement(
-				"INSERT INTO USUARIO(nome_usuario,senha_usuario,login_usuario,email_usuario,tipoconta_usuario) VALUES(?,AES_ENCRYPT(?,'chave'),?,?,?)");
+				"INSERT INTO Usuario(Nome_Usuario,Senha_Usuario,Login_Usuario,Email_Usuario,Tipoconta_Usuario) VALUES(?,MD5(?),?,?,?)");
 		preparedStatement.setString(1, uVO.getNome());
 		preparedStatement.setString(2, uVO.getSenha());
 		preparedStatement.setString(3, uVO.getLogin());
@@ -39,7 +39,7 @@ public class UsuarioDAO {
 	public boolean senhaAdministrador(String senha) throws Exception {
 		boolean retorno = false;
 		
-		PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM Usuario WHERE Senha_Usuario = AES_ENCRYPT(?,'chave') AND tipoconta_usuario = 'Administrador'");
+		PreparedStatement preparedStatement = this.connection.prepareStatement("SELECT * FROM Usuario WHERE Senha_Usuario = MD5(?) AND Tipoconta_Usuario = 'Administrador'");
 		
 		preparedStatement.setString(1, senha);
 		

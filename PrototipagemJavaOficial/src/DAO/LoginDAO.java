@@ -22,7 +22,7 @@ public class LoginDAO {
 		
 		String retorno = "";
 		
-		PreparedStatement preparedStatement = this.connection.prepareStatement("Select tipoconta_usuario from usuario where login_usuario=? and senha_usuario=AES_ENCRYPT(?,'chave')");
+		PreparedStatement preparedStatement = this.connection.prepareStatement("Select tipoconta_usuario from usuario where login_usuario=? and senha_usuario=MD5(?)");
 		
 		preparedStatement.setString(1, loginVO.getLogin());
 		preparedStatement.setString(2, loginVO.getSenha());

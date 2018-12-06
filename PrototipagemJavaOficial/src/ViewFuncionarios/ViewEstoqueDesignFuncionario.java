@@ -1,6 +1,6 @@
 package ViewFuncionarios;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,19 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.HeadlessException;
+
 
 import javax.swing.JSeparator;
 import javax.swing.JButton;
-import javax.swing.border.BevelBorder;
-import java.awt.Dimension;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Controller.EstoqueController;
-import Controller.ProdutoController;
+
 import VO.EstoqueVO;
-import VO.ProdutoVO;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -99,7 +97,6 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 	 * @throws Exception 
 	 */
 	public ViewEstoqueDesignFuncionario(){
-		setTitle("Cadastro de Estoque");
 		
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -110,7 +107,6 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 				
 			}
 			
-			listarTodos();
 		} catch( Exception ex) {
 			System.err.println(ex);
 		}
@@ -118,7 +114,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 	
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 955, 804);
+		setBounds(100, 100, 955, 694);
 		contentPane =
 
 				new JPanel();
@@ -224,14 +220,14 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		button_5.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 		Panel panel = new Panel();
-		panel.setBounds(0, 0, 268, 775);
-		panel.setBackground(new Color(51, 0, 0));
+		panel.setBounds(0, 0, 268, 682);
+		panel.setBackground(new Color(0, 0, 0));
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 492, 0, 2);
 
 		JButton button = new JButton("Cadastro de Clientes");
-	button .setMnemonic(KeyEvent.VK_1);
+		button.setMnemonic(KeyEvent.VK_1);
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBounds(0, 132, 270, 48);
 		button.addActionListener(new ActionListener() {
@@ -249,10 +245,10 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button.setBackground(new Color(51, 0, 0));
+		button.setBackground(new Color(0, 0, 0));
 
 		JButton button_1 = new JButton("Estoque");
-		button_1.setMnemonic(KeyEvent.VK_4);
+		button_1 .setMnemonic(KeyEvent.VK_4);
 		button_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_1.setBounds(0, 312, 270, 48);
 		button_1.addActionListener(new ActionListener() {
@@ -276,18 +272,18 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_1.setBackground(new Color(51, 0, 0));
+		button_1.setBackground(new Color(0, 0, 0));
 
 		JButton button_2 = new JButton("Cadastro de Fornecedores");
-		button_2.setMnemonic(KeyEvent.VK_2);
+		button_2 .setMnemonic(KeyEvent.VK_2);
 		button_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_2.setBounds(0, 192, 270, 48);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				FornecedorFuncionario fornecedor = new FornecedorFuncionario();
-				fornecedor.frame.setVisible(true);
-				fornecedor.frame.setLocationRelativeTo(null);
+				CadastroFornecedorViewFuncionario cadastroFornecedorView = new CadastroFornecedorViewFuncionario();
+				cadastroFornecedorView.frame.setVisible(true);
+				cadastroFornecedorView.frame.setLocationRelativeTo(null);
 
 				dispose();
 			}
@@ -297,7 +293,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_2.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_2.setBackground(new Color(51, 0, 0));
+		button_2.setBackground(new Color(0, 0, 0));
 
 		JButton button_3 = new JButton("Cadastro de Produtos");
 		button_3 .setMnemonic(KeyEvent.VK_3);
@@ -309,6 +305,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 				CadastroProdutosViewFuncionario produto = new CadastroProdutosViewFuncionario();
 				produto.setVisible(true);
 				produto.setLocationRelativeTo(null);
+
 				dispose();
 			}
 		});
@@ -317,7 +314,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_3.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_3.setBackground(new Color(51, 0, 0));
+		button_3.setBackground(new Color(0, 0, 0));
 
 		JLabel label = new JLabel("Varej\u00E3o Santos");
 		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -328,6 +325,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 				ViewMenuDesignFuncionario menu = new ViewMenuDesignFuncionario();
 				menu.setVisible(true);
 				menu.setLocationRelativeTo(null);
+
 				dispose();
 			}
 		});
@@ -344,10 +342,10 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(6, 83, 204, 18);
 
-		JLabel lblFuncionrio = new JLabel("Funcion\u00E1rio");
-		lblFuncionrio.setBounds(24, 525, 79, 16);
-		lblFuncionrio.setForeground(Color.WHITE);
-		lblFuncionrio.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		JLabel lblFuncionario = new JLabel("Funcionario");
+		lblFuncionario.setBounds(24, 525, 79, 16);
+		lblFuncionario.setForeground(Color.WHITE);
+		lblFuncionario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 		JSeparator separator_5 = new JSeparator();
 		separator_5.setBounds(0, 492, 270, 2);
@@ -371,7 +369,7 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		panel.add(separator_1);
 		panel.add(separator);
 		panel.add(separator_5);
-		panel.add(lblFuncionrio);
+		panel.add(lblFuncionario);
 		panel.add(button);
 		panel.add(button_2);
 		panel.add(button_3);
@@ -407,6 +405,13 @@ public class ViewEstoqueDesignFuncionario extends JFrame {
 		btnNewButton_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		btnNewButton_2.setBounds(414, 34, 141, 28);
 		panel_1.add(btnNewButton_2);
+		
+		try {
+			listarTodos();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	private static void cleanTable(JTable tabela) {

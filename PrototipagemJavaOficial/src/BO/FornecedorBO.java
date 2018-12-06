@@ -7,15 +7,23 @@ import DAO.FornecedorDAO;
 import VO.FornecedorVO;
 
 import Validator.FornecedorValidation;
+import ValidatorFuncionario.FornecedorValidationFuncionario;
 
 public class FornecedorBO {
 
 	public void cadastrarFornecedor(FornecedorVO fornecedorVO) throws Exception {
 		FornecedorValidation fornecedorValidation = new FornecedorValidation();
-		boolean retorno = fornecedorValidation.validarCodigoFornecedor(fornecedorVO);
-		boolean retorno2= fornecedorValidation.validarDados(fornecedorVO);
+		boolean retorno= fornecedorValidation.validarDados(fornecedorVO);
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
-		if (retorno&&retorno2) {
+		if (retorno) {
+		fornecedorDAO.cadastrarFornecedor(fornecedorVO);
+		}
+	}
+	public void cadastrarFornecedorFuncionario(FornecedorVO fornecedorVO) throws Exception {
+		FornecedorValidationFuncionario fornecedorValidation = new FornecedorValidationFuncionario();
+		boolean retorno= fornecedorValidation.validarDados(fornecedorVO);
+		FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		if (retorno) {
 		fornecedorDAO.cadastrarFornecedor(fornecedorVO);
 		}
 	}
@@ -28,7 +36,7 @@ public class FornecedorBO {
 
 	public void alterarFornecedor(FornecedorVO fornecedorVO) throws Exception {
 		FornecedorValidation fornecedorValidation = new FornecedorValidation();
-		boolean retorno2 = fornecedorValidation.validarDados(fornecedorVO);
+		boolean retorno2 = fornecedorValidation.validarDadosAlterar(fornecedorVO);
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
 		if (retorno2) {
 		fornecedorDAO.alterarFornecedor(fornecedorVO);

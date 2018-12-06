@@ -1,23 +1,26 @@
 package BO;
 
-import java.awt.HeadlessException;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.swing.JOptionPane;
-
 import DAO.ProdutoDAO;
 import VO.ProdutoVO;
 import Validator.ProdutoValidation;
+import ValidatorFuncionario.ProdutoValidationFuncionario;
 
 public class ProdutoBO {
 
+	
 	public void cadastrarProduto(ProdutoVO produtoVO) throws Exception {
 		ProdutoValidation pValidation = new ProdutoValidation();
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-
-		boolean retorno = pValidation.validaProduto(produtoVO);
-
+		boolean retorno = pValidation.validaDadosProdutos(produtoVO);
+		if (retorno) {
+			produtoDAO.cadastraProduto(produtoVO);
+		}
+	}
+	public void cadastrarProdutoFuncionario(ProdutoVO produtoVO) throws Exception {
+		ProdutoValidationFuncionario pValidation = new ProdutoValidationFuncionario();
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		boolean retorno = pValidation.validaDadosProdutos(produtoVO);
 		if (retorno) {
 			produtoDAO.cadastraProduto(produtoVO);
 		}
@@ -40,7 +43,7 @@ public class ProdutoBO {
 		ProdutoValidation pValidation = new ProdutoValidation();
 		ProdutoDAO produtoDAO = new ProdutoDAO();
 
-		boolean retorno = pValidation.validaProduto(produtoVO);
+		boolean retorno = pValidation.validaDadosProdutos(produtoVO);
 
 		if (retorno) {
 			produtoDAO.alteraProduto(produtoVO);
@@ -60,9 +63,23 @@ public class ProdutoBO {
 
 	public void cadastrarEntrada(ProdutoVO produtoVO) throws Exception {
 		ProdutoDAO produtoDAO = new ProdutoDAO();
-
-		produtoDAO.cadastraEntrada(produtoVO);
+		ProdutoValidation produtoValidation = new ProdutoValidation();
+		boolean retorno = produtoValidation.validarEntradaProdutos(produtoVO);
+		if (retorno) {
+			produtoDAO.cadastraEntrada(produtoVO);
+		}
+		
 	}
+	public void cadastrarEntradaFuncionario(ProdutoVO produtoVO) throws Exception {
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		ProdutoValidationFuncionario produtoValidation = new ProdutoValidationFuncionario();
+		boolean retorno = produtoValidation.validarEntradaProdutos(produtoVO);
+		if (retorno) {
+			produtoDAO.cadastraEntrada(produtoVO);
+		}
+		
+	}
+
 
 	public List<ProdutoVO> listarLotes() throws Exception {
 		ProdutoDAO DAO = new ProdutoDAO();

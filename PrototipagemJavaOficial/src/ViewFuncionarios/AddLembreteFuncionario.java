@@ -68,7 +68,7 @@ public class AddLembreteFuncionario extends JDialog {
 		setFont(new Font("Dialog", Font.BOLD, 12));
 		setBounds(100, 100, 357, 459);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(192, 192, 192));
+		contentPanel.setBackground(new Color(17,144,147));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -116,7 +116,7 @@ public class AddLembreteFuncionario extends JDialog {
 		contentPanel.add(txtdata);
 		{
 			JButton okButton = new JButton("Salvar");
-			okButton.setBounds(96, 373, 88, 37);
+			okButton.setBounds(80, 373, 104, 37);
 			contentPanel.add(okButton);
 			okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			okButton.setIcon(new ImageIcon(AddLembreteFuncionario.class.getResource("/imagens/icons8-salvar-25 (2).png")));
@@ -174,7 +174,7 @@ public class AddLembreteFuncionario extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(Color.GRAY);
+			buttonPane.setBackground(new Color(17,144,147));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		}

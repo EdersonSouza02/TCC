@@ -226,9 +226,12 @@ public class ClienteDAO {
 		preparedStatement.setInt(parameterIndex++, codigo);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		if (resultSet.next()) {
-			return false;
-		} else {
 			return true;
+			//CLIENTE JA EXISTE
+
+		} else {
+			//CLIENTE NOVO
+			return false;
 		}
 	}
 }

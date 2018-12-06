@@ -3,35 +3,23 @@ package Validator;
 import VO.UsuarioVO;
 
 public class UsuarioValidation {
-
+	ValidarNome validarNome = new ValidarNome();
+	ValidarLogin validarLogin = new ValidarLogin();
+	ValidarSenha validarSenha = new ValidarSenha();
+	ValidarEmail validarEmail = new ValidarEmail();
 	public boolean validaUsuario(UsuarioVO uVO) throws Exception {
 		boolean retorno = true;
-
-		if (uVO.getNome().equals("")) {
+		boolean retornoNome  = validarNome.validarNomeUsuario(uVO.getNome());
+		boolean retornoLogin = validarLogin.validarLogin(uVO.getLogin());  
+		boolean retornoSenha = validarSenha.validarSenha(uVO.getSenha());
+		boolean retornoEmail = validarEmail.validarEmailUsuario(uVO.getEmail());
+		
+		if (retornoNome && retornoLogin && retornoSenha && retornoEmail) {
+			retorno = true;
+		}else {
 			retorno = false;
-			throw new Exception("Favor informar o nome");
-
+			throw new Exception("Um dos retornos é falso");
 		}
-		if (uVO.getLogin().equals("")) {
-			retorno = false;
-			throw new Exception("Favor informar o Login");
-		}
-		if (uVO.getSenha().equals("")) {
-			retorno = false;
-			throw new Exception("Favor informar a senha");
-		}
-		if (uVO.getEmail().equals("")) {
-			retorno = false;
-			throw new Exception("Favor informar o Email");
-
-		}
-
 		return retorno;
 	}
-
-	public String teste(UsuarioVO uVO) {
-		
-		return "ERRO";
-	}
-
 }

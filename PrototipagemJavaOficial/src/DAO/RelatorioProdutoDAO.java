@@ -20,9 +20,9 @@ public class RelatorioProdutoDAO {
 	public RelatorioProdutosVO getDadosRelatoriosProduto(Date dataInicio, Date dataFinal) throws Exception {
 		RelatorioProdutosVO relatorio = new RelatorioProdutosVO();
 		PreparedStatement preparedStatement = this.connection.prepareStatement(
-				"SELECT produto.Nome_Produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join produto on(vendas.Codigo_Produto = produto.Codigo_Produto) where data_venda between ?  and ? group by produto.Nome_Produto order by  quantidade_venda desc ");
+				"SELECT Produto.Nome_Produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join Produto on(vendas.Codigo_Produto = Produto.Codigo_Produto) where data_venda between ?  and ? group by Produto.Nome_Produto");
 		
-		PreparedStatement preparedStatement2 = this.connection.prepareStatement("SELECT produto.Nome_Produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join produto on(vendas.Codigo_Produto = produto.Codigo_Produto) where data_venda between ?  and ? group by produto.Nome_Produto order by  quantidade_venda asc");
+		PreparedStatement preparedStatement2 = this.connection.prepareStatement("SELECT Produto.Nome_Produto,sum(vendas.quantidade_venda) as 'Relatorios' from vendas inner join Produto on(vendas.Codigo_Produto = Produto.Codigo_Produto) where data_venda between ?  and ? group by Produto.Nome_Produto");
 		java.util.Date dataUtil = new java.util.Date();
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 		

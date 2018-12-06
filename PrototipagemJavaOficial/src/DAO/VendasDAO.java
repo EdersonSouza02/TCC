@@ -33,8 +33,10 @@ public class VendasDAO {
 		preparedStatement.setDate(4, new java.sql.Date(vendasVO.getDataVenda().getTime()));
 		preparedStatement.setDouble(5,vendasVO.getPeso());
 		preparedStatement.setInt(6, vendasVO.getQuantidade());
-		if(preparedStatement.execute()){
-			JOptionPane.showMessageDialog(null, "Venda cadastrada com sucesso");;
+		
+		ResultSet rs = preparedStatement.executeQuery();
+		if(rs.next()){
+			JOptionPane.showMessageDialog(null, rs.getString(1));
 		}
 	}
 

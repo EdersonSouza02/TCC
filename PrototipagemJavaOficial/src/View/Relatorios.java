@@ -28,6 +28,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -303,7 +305,7 @@ public class Relatorios extends JFrame {
 		panel.add(separator_5);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(25, 25, 112));
+		panel_1.setBackground(new Color(0, 128, 128));
 		panel_1.setBounds(268, 0, 361, 375);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
@@ -379,7 +381,7 @@ public class Relatorios extends JFrame {
 		panel_1.add(label_6);
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBackground((new Color(25, 25, 112)));
+		panel_3.setBackground((new Color(0, 128, 128)));
 		panel_3.setBounds(268, 367, 361, 375);
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
@@ -417,7 +419,7 @@ public class Relatorios extends JFrame {
 		lblAt.setForeground(Color.WHITE);
 
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground((new Color(25, 25, 112)));
+		panel_4.setBackground((new Color(0, 128, 128)));
 		panel_4.setBounds(636, 0, 328, 742);
 		contentPane.add(panel_4);
 		panel_4.setLayout(null);
@@ -509,8 +511,15 @@ public class Relatorios extends JFrame {
 			
 			relatorioProdutoVO = controller.getDadosRelatoriosProdutos(txtdatainicio.getDate(), txtdatafinal.getDate());
 			
+			SimpleDateFormat out = new SimpleDateFormat("dd-MM-yyyy");
 			
-			PdfWriter.getInstance(document, new FileOutputStream("C:/temp/RelatorioVendas.pdf"));
+			String dataInicio = out.format(relatorioVendasVO.getDataInicio());
+
+			String dataFinal = out.format(relatorioVendasVO.getDataFinal());
+			
+			String nomeArq = "Relatorio Vendas "+ dataInicio + " até " + dataFinal; 
+			
+			PdfWriter.getInstance(document, new FileOutputStream("C:/temp/"+nomeArq+".pdf"));
 
 			document.open();
 			document.add(new Paragraph("Relatório de Vendas\n"));
@@ -529,7 +538,7 @@ public class Relatorios extends JFrame {
 			
 
 			try {
-				Desktop.getDesktop().open(new File("C:/temp/RelatorioVendas.pdf"));
+				Desktop.getDesktop().open(new File("C:/temp/"+nomeArq+".pdf"));
 			} catch (IOException ex) {
 				System.out.println("Error:" + ex);
 			}
@@ -566,46 +575,6 @@ public class Relatorios extends JFrame {
 
 	}
 
-	private void gravaPdfProduto(RelatorioProdutosVO relatorioProdutoVO) {
-		Document document = new Document();
-
-		try {
-			PdfWriter.getInstance(document, new FileOutputStream("C:/temp/RelatorioProdutos.pdf"));
-
-			document.open();
-			document.add(new Paragraph("Relatório de Produtos\n"));
-			document.add(
-					new Paragraph("\n O Produto mais vendido foi: " + " " + relatorioProdutoVO.getNomeProdutoMaior()
-							+ ";" + "\nUnidades Vendidas: " + relatorioProdutoVO.getMaiorVenda()
-							+ "\nProduto que menos vendeu:" + relatorioProdutoVO.getNomeProduto()
-							+ "\n Unidades vendidas" + " " + relatorioProdutoVO.getMenorVenda()));
-
-		} catch (DocumentException ex) {
-			System.out.println("Error:" + ex);
-		} catch (FileNotFoundException ex) {
-			System.out.println("Error:" + ex);
-		} finally {
-			document.close();
-		}
-
-		try {
-			Desktop.getDesktop().open(new File("C:/temp/RelatorioProduto.pdf"));
-		} catch (IOException ex) {
-			System.out.println("Error:" + ex);
-		}
-
-	}
-
-	private RelatorioEstoqueVO getDadosRelatoriosEstoque() throws Exception {
-		RelatorioEstoqueController controller = new RelatorioEstoqueController();
-		RelatorioEstoqueVO relatorioEstoque = new RelatorioEstoqueVO();
-		// relatorioEstoque.setDataInicio(txtInicioEstoque.getDate());
-		// relatorioEstoque.setDataFinal(txtFinalEstoque.getDate());
-
-		return controller.getDadosRelatoriosEstoque();
-
-	}
-
 	private RelatorioClienteVO getDadosRelatoriosCliente() throws Exception {
 		RelatorioClienteController controller = new RelatorioClienteController();
 		RelatorioClienteVO RelatorioCliente = new RelatorioClienteVO();
@@ -618,8 +587,19 @@ public class Relatorios extends JFrame {
 	private void gravaPdfCliente(RelatorioClienteVO relatorioClienteVO) {
 		Document document = new Document();
 
+		SimpleDateFormat out = new SimpleDateFormat("dd-MM-yyyy");
+		
+		String dataInicio = out.format(relatorioClienteVO.getDataInicio());
+
+		String dataFinal = out.format(relatorioClienteVO.getDataFinal());
+		
+		String nomeArq = "Relatorio Cliente "+ dataInicio + " até " + dataFinal; 
+		
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream("C:/temp/RelatorioCliente.pdf"));
+
+			
+			PdfWriter.getInstance(document, new FileOutputStream("C:/temp/"+nomeArq+".pdf"));
+			
 
 			document.open();
 			document.add(new Paragraph("Relatório de Clientes\n"));
@@ -637,7 +617,7 @@ public class Relatorios extends JFrame {
 		}
 
 		try {
-			Desktop.getDesktop().open(new File("C:/temp/RelatorioCliente.pdf"));
+			Desktop.getDesktop().open(new File("C:/temp/"+nomeArq+".pdf"));
 		} catch (IOException ex) {
 			System.out.println("Error:" + ex);
 		}

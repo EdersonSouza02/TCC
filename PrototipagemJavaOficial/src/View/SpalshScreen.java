@@ -96,21 +96,6 @@ public class SpalshScreen extends JFrame {
 		label_1.setIcon(new ImageIcon(SpalshScreen.class.getResource("/imagens/logoOficial.png")));
 		label_1.setBounds(139, 71, 348, 150);
 		panel.add(label_1);
-		
-		JButton btnLembreme = new JButton("Lembre-me");
-		btnLembreme.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Transferidor t = new Transferidor();
-					t.setVisible(true);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		});
-		btnLembreme.setBounds(503, 21, 89, 23);
-		panel.add(btnLembreme);
 
 		new Thread() {
 			public void run() {

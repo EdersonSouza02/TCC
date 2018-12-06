@@ -11,6 +11,10 @@ public class ClienteController {
 		ClienteBO cBO = new ClienteBO();
 		cBO.cadastrarCliente(cVO);
 	}
+	public void cadastroDeClienteFuncionario(ClienteVO cVO) throws Exception{
+		ClienteBO cBO = new ClienteBO();
+		cBO.cadastrarClienteFuncionario(cVO);
+	}
 
 	public List<ClienteVO> pesquisarClienteTodos() throws Exception {
 		ClienteBO cBO = new ClienteBO();

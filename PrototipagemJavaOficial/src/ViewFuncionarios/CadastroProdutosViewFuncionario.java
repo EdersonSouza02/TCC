@@ -60,19 +60,30 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 	private JPanel contentPane;
 
 	static CadastroProdutosViewFuncionario frameProdutos = new CadastroProdutosViewFuncionario();
-	private JTextField txtCodigo;
-	private JTextField txtNome;
+	public static JTextField txtCodigo;
+	public static JTextField txtNome;
 	private JTextField txtPesquisa;
-	private JComboBox comboBox;
+	public static JComboBox comboBox;
 	private static JTable table;
 	private JTextField txtLote;
-	private JTextField txtCodProd;
-	private JTextField txtValor;
-	private JTextField txtQuantidade;
-	private JTextField txtPeso;
+	public static JTextField txtCodProd;
+	public static JTextField txtValor;
+	public static JTextField txtQuantidade;
+	public static JTextField txtPeso;
 	private JTextField txtPesquisar;
 	private JTable table_1;
-	private JDateChooser txtData; 
+	public static JDateChooser txtData;
+	private JTextField textField;
+	private JTextField textField_1;
+	public static JLabel lblNome;
+	public static JLabel lblCodigoProduto;
+	public static JLabel lblTipo;
+	public static JLabel lblCdigoDoProduto;
+	public static JLabel lblDataDeValidade;
+	public static JLabel lblValor;
+	public static JLabel lblQuantidade;
+	public static JLabel lblPeso;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -97,7 +108,7 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 
 					frameProdutos.setVisible(true);
 					frameProdutos.setLocationRelativeTo(null);
-					//frameProdutos.setExtendedState(MAXIMIZED_BOTH);
+					// frameProdutos.setExtendedState(MAXIMIZED_BOTH);
 
 					pesquisarProdutoTodos();
 
@@ -115,7 +126,7 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		setResizable(false);
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 955, 878);
+		setBounds(100, 100, 953, 764);
 		contentPane = new JPanel();
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -123,15 +134,15 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		contentPane.setLayout(null);
 
 		Panel panel = new Panel();
-		panel.setBounds(0, 0, 272, 849);
-		panel.setBackground(new Color(51, 0, 0));
+		panel.setBounds(0, 0, 272, 736);
+		panel.setBackground(new Color(0, 0, 0));
 		contentPane.add(panel);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 490, 0, 2);
 
 		JButton button = new JButton("Cadastro de Clientes");
-	button .setMnemonic(KeyEvent.VK_1);
+		button.setMnemonic(KeyEvent.VK_1);
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.setBounds(0, 131, 270, 48);
 		button.addActionListener(new ActionListener() {
@@ -140,7 +151,6 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 				CadastroClienteViewFuncionario window = new CadastroClienteViewFuncionario();
 				window.frmCadastroDeCliente.setVisible(true);
 				window.frmCadastroDeCliente.setLocationRelativeTo(null);
-
 
 				dispose();
 			}
@@ -151,10 +161,10 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		button.setForeground(Color.WHITE);
 		button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button.setBackground(new Color(51, 0, 0));
+		button.setBackground(new Color(0, 0, 0));
 
 		JButton button_1 = new JButton("Estoque");
-		button_1 .setMnemonic(KeyEvent.VK_4);
+		button_1.setMnemonic(KeyEvent.VK_4);
 		button_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_1.setBounds(0, 311, 270, 48);
 		button_1.addActionListener(new ActionListener() {
@@ -173,19 +183,18 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_1.setBackground(new Color(51, 0, 0));
+		button_1.setBackground(new Color(0, 0, 0));
 
 		JButton button_2 = new JButton("Cadastro de Fornecedores");
-	button_2 .setMnemonic(KeyEvent.VK_2);
+		button_2.setMnemonic(KeyEvent.VK_2);
 		button_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_2.setBounds(0, 191, 270, 48);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				FornecedorFuncionario fornecedor = new FornecedorFuncionario();
-				fornecedor.frame.setVisible(true);
-				fornecedor.frame.setLocationRelativeTo(null);
-
+				CadastroFornecedorViewFuncionario cadastroFornecedorView = new CadastroFornecedorViewFuncionario();
+				cadastroFornecedorView.frame.setVisible(true);
+				cadastroFornecedorView.frame.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -194,10 +203,10 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_2.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_2.setBackground(new Color(51, 0, 0));
+		button_2.setBackground(new Color(0, 0, 0));
 
 		JButton button_3 = new JButton("Cadastro de Produtos");
-		button_3 .setMnemonic(KeyEvent.VK_3);
+		button_3.setMnemonic(KeyEvent.VK_3);
 		button_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_3.setBounds(0, 251, 270, 48);
 		button_3.addActionListener(new ActionListener() {
@@ -206,7 +215,6 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 				CadastroProdutosViewFuncionario produto = new CadastroProdutosViewFuncionario();
 				produto.setVisible(true);
 				produto.setLocationRelativeTo(null);
-
 				dispose();
 			}
 		});
@@ -215,7 +223,7 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		button_3.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(255, 255, 255), null));
-		button_3.setBackground(new Color(51, 0, 0));
+		button_3.setBackground(new Color(0, 0, 0));
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 97, 0, 2);
@@ -237,10 +245,10 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		label.setForeground(new Color(240, 248, 255));
 		label.setFont(new Font("Segoe UI", Font.BOLD, 24));
 
-		JLabel lblFuncionarios = new JLabel("Funcionario");
-		lblFuncionarios.setBounds(24, 523, 79, 16);
-		lblFuncionarios.setForeground(Color.WHITE);
-		lblFuncionarios.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		JLabel lblFuncionario = new JLabel("Funcionario");
+		lblFuncionario.setBounds(24, 523, 79, 16);
+		lblFuncionario.setForeground(Color.WHITE);
+		lblFuncionario.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(0, 482, 276, 2);
@@ -256,266 +264,301 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		panel.add(separator_1);
 		panel.add(label);
 		panel.add(separator_3);
-		panel.add(lblFuncionarios);
+		panel.add(lblFuncionario);
 		panel.add(separator_2);
-		
+
 		JSeparator separator_6 = new JSeparator();
 		separator_6.setBounds(10, 75, 208, 2);
 		panel.add(separator_6);
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{button, button_1, button_2, button_3, separator, separator_1, label, separator_3, lblFuncionarios, separator_2}));
-		
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{button, button_1, button_2, button_3, separator, separator_1, label, separator_3, lblFuncionario, separator_2}));
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(269, 0, 680, 849);
 		contentPane.add(tabbedPane);
 		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Cadastro de Entrada de Produtos", null, panel_2, null);
-		panel_2.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("CADASTRO DE ENTRADA DE PRODUTOS");
-		lblNewLabel.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-caixa-registradora-filled-25.png")));
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(137, 6, 482, 30);
-		panel_2.add(lblNewLabel);
-		
-		JSeparator separator_5 = new JSeparator();
-		separator_5.setBounds(153, 30, 455, 2);
-		panel_2.add(separator_5);
-		
-		JLabel lblLote = new JLabel("LOTE:");
-		lblLote.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblLote.setBounds(39, 84, 55, 16);
-		panel_2.add(lblLote);
-		
-		txtLote = new JTextField();
-		txtLote.setBounds(39, 112, 122, 28);
-		panel_2.add(txtLote);
-		txtLote.setColumns(10);
-		
-		JLabel lblCdigoDoProduto = new JLabel("C\u00D3DIGO DO PRODUTO:");
-		lblCdigoDoProduto.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblCdigoDoProduto.setBounds(221, 84, 132, 16);
-		panel_2.add(lblCdigoDoProduto);
-		
-		txtCodProd = new JTextField();
-		txtCodProd.setBounds(221, 112, 132, 28);
-		panel_2.add(txtCodProd);
-		txtCodProd.setColumns(10);
-		
-		JLabel lblDataDeValidade = new JLabel("DATA DE VALIDADE:");
-		lblDataDeValidade.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblDataDeValidade.setBounds(397, 84, 122, 16);
-		panel_2.add(lblDataDeValidade);
-		
-		txtData = new JDateChooser();
-		txtData.setBounds(397, 112, 122, 28);
-		panel_2.add(txtData);
-		
-		JLabel lblValor = new JLabel("VALOR:");
-		lblValor.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblValor.setBounds(553, 84, 55, 16);
-		panel_2.add(lblValor);
-		
-		txtValor = new JTextField();
-		txtValor.setBounds(553, 112, 103, 28);
-		panel_2.add(txtValor);
-		txtValor.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("QUANTIDADE:");
-		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(39, 190, 87, 16);
-		panel_2.add(lblNewLabel_1);
-		
-		JLabel lblValor_1 = new JLabel("PESO:");
-		lblValor_1.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lblValor_1.setBounds(221, 190, 55, 16);
-		panel_2.add(lblValor_1);
-		
-		txtQuantidade = new JTextField();
-		txtQuantidade.setBounds(39, 224, 122, 28);
-		panel_2.add(txtQuantidade);
-		txtQuantidade.setColumns(10);
-		
-		txtPeso = new JTextField();
-		txtPeso.setBounds(221, 224, 122, 28);
-		panel_2.add(txtPeso);
-		txtPeso.setColumns(10);
-		
-		JPanel panel_4 = new JPanel();
-		panel_4.setLayout(null);
-		panel_4.setBorder(new TitledBorder(null, "Produtos em Estoque", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_4.setBounds(39, 385, 610, 272);
-		panel_2.add(panel_4);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(17, 65, 576, 188);
-		panel_4.add(scrollPane_1);
-		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Lote", "Cod.Produto", "Validade", "Valor", "Quantidade", "Peso"
-			}
-		));
-		scrollPane_1.setViewportView(table_1);
-		
-		txtPesquisar = new JTextField();
-		txtPesquisar.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyReleased(KeyEvent arg0) {
+				JPanel panel_2 = new JPanel();
+				tabbedPane.addTab("Cadastro de Entrada de Produtos", null, panel_2, null);
+				panel_2.setLayout(null);
 				
-				try {
+						JLabel lblNewLabel = new JLabel("CADASTRO DE ENTRADA DE PRODUTOS");
+						lblNewLabel.setIcon(new ImageIcon(
+								CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-caixa-registradora-filled-25.png")));
+						lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
+						lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+						lblNewLabel.setBounds(137, 6, 482, 30);
+						panel_2.add(lblNewLabel);
+						
+								JSeparator separator_5 = new JSeparator();
+								separator_5.setBounds(153, 30, 455, 2);
+								panel_2.add(separator_5);
+								
+										JLabel lblLote = new JLabel("N\u00BA DO LOTE:");
+										lblLote.setFont(new Font("Segoe UI", Font.BOLD, 12));
+										lblLote.setBounds(39, 84, 87, 16);
+										panel_2.add(lblLote);
+										
+												txtLote = new JTextField();
+												txtLote.setEnabled(false);
+												txtLote.setBounds(39, 112, 122, 28);
+												panel_2.add(txtLote);
+												txtLote.setColumns(10);
+												
+														lblCdigoDoProduto = new JLabel("C\u00D3DIGO DO PRODUTO:");
+														lblCdigoDoProduto.setFont(new Font("Segoe UI", Font.BOLD, 12));
+														lblCdigoDoProduto.setBounds(221, 84, 132, 16);
+														panel_2.add(lblCdigoDoProduto);
+														
+																txtCodProd = new JTextField();
+																txtCodProd.setBounds(221, 112, 132, 28);
+																panel_2.add(txtCodProd);
+																txtCodProd.setColumns(10);
+																
+																		lblDataDeValidade = new JLabel("DATA DE VALIDADE:");
+																		lblDataDeValidade.setFont(new Font("Segoe UI", Font.BOLD, 12));
+																		lblDataDeValidade.setBounds(397, 84, 122, 16);
+																		panel_2.add(lblDataDeValidade);
+																		
+																				txtData = new JDateChooser();
+																				txtData.setBounds(397, 112, 122, 28);
+																				panel_2.add(txtData);
+																				
+																						lblValor = new JLabel("VALOR:");
+																						lblValor.setFont(new Font("Segoe UI", Font.BOLD, 12));
+																						lblValor.setBounds(553, 84, 55, 16);
+																						panel_2.add(lblValor);
+																						
+																								txtValor = new JTextField();
+																								txtValor.setBounds(553, 112, 103, 28);
+																								panel_2.add(txtValor);
+																								txtValor.setColumns(10);
+																								
+																										lblQuantidade = new JLabel("QUANTIDADE:");
+																										lblQuantidade.setFont(new Font("Segoe UI", Font.BOLD, 12));
+																										lblQuantidade.setBounds(39, 190, 87, 16);
+																										panel_2.add(lblQuantidade);
+																										
+																												lblPeso = new JLabel("PESO:");
+																												lblPeso.setFont(new Font("Segoe UI", Font.BOLD, 12));
+																												lblPeso.setBounds(221, 190, 55, 16);
+																												panel_2.add(lblPeso);
+																												
+																														txtQuantidade = new JTextField();
+																														txtQuantidade.setBounds(39, 224, 122, 28);
+																														panel_2.add(txtQuantidade);
+																														txtQuantidade.setColumns(10);
+																														
+																																txtPeso = new JTextField();
+																																txtPeso.setBounds(221, 224, 122, 28);
+																																panel_2.add(txtPeso);
+																																txtPeso.setColumns(10);
+																																
+																																		JPanel panel_4 = new JPanel();
+																																		panel_4.setLayout(null);
+																																		panel_4.setBorder(new TitledBorder(null, "Produtos em Estoque", TitledBorder.LEFT, TitledBorder.TOP, null,
+																																				new Color(0, 0, 0)));
+																																		panel_4.setBounds(39, 296, 610, 272);
+																																		panel_2.add(panel_4);
+																																		
+																																				JScrollPane scrollPane_1 = new JScrollPane();
+																																				scrollPane_1.setBounds(17, 65, 576, 188);
+																																				panel_4.add(scrollPane_1);
+																																				
+																																						table_1 = new JTable();
+																																						table_1.setModel(new DefaultTableModel(new Object[][] {},
+																																								new String[] { "Lote", "Cod.Produto", "Validade", "Valor", "Quantidade", "Peso" }));
+																																						scrollPane_1.setViewportView(table_1);
+																																										
+																																												txtPesquisar = new JTextField();
+																																												txtPesquisar.addKeyListener(new KeyAdapter() {
+																																													@Override
+																																													public void keyReleased(KeyEvent arg0) {
 
-//					Pattern patternString = Pattern.compile("[A-Z]");
-//					Pattern patternNumeros = Pattern.compile("[0-9]");
+																																														try {
 
-					addDadosTableLote(pesquisaPorLote(Integer.parseInt(txtPesquisar.getText())));
+																																															// Pattern patternString = Pattern.compile("[A-Z]");
+																																															// Pattern patternNumeros = Pattern.compile("[0-9]");
 
-				} catch (Exception e1) {
+																																															addDadosTableLote(pesquisaPorLote(Integer.parseInt(txtPesquisar.getText())));
 
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		txtPesquisar.setColumns(10);
-		txtPesquisar.setBounds(96, 25, 57, 28);
-		panel_4.add(txtPesquisar);
-		
-		JButton button_14 = new JButton("");
-		button_14.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-pesquisar-filled-25.png")));
-		button_14.setBounds(181, 25, 47, 28);
-		panel_4.add(button_14);
-		
-		JLabel label_4 = new JLabel("Pesquisar:");
-		label_4.setBounds(17, 31, 78, 16);
-		panel_4.add(label_4);
-		
-		JButton button_15 = new JButton("Cadastrar");
-		button_15.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					cadastraEntrada();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+																																														} catch (Exception e1) {
 
+																																															e1.printStackTrace();
+																																														}
 
-		});
-		button_15.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-salvar-25 (2).png")));
-		button_15.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		button_15.setBounds(39, 669, 122, 46);
-		panel_2.add(button_15);
-		
-		JButton button_17 = new JButton("Limpar");
-		button_17.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				limparLote();
-				
-			}
-		});
-		button_17.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
-		button_17.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		button_17.setBounds(398, 669, 122, 46);
-		panel_2.add(button_17);
-		
-		JButton btnDetalhes = new JButton("Detalhes");
-		btnDetalhes.setBounds(194, 669, 175, 46);
-		panel_2.add(btnDetalhes);
-		btnDetalhes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					preencherCamposLote();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnDetalhes.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-ver-detalhes-25.png")));
-		
-		JButton button_12 = new JButton("Atualizar");
-		button_12.setBounds(534, 669, 115, 46);
-		panel_2.add(button_12);
-		button_12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				try {
-					listarLotes();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-			}
-		});
-		button_12.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-actualizar-25 (1).png")));
-		
+																																													}
+																																												});
+																																												txtPesquisar.setColumns(10);
+																																												txtPesquisar.setBounds(96, 25, 57, 28);
+																																												panel_4.add(txtPesquisar);
+																																												
+																																														JButton button_14 = new JButton("");
+																																														button_14.setIcon(
+																																																new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-pesquisar-filled-25.png")));
+																																														button_14.setBounds(181, 25, 47, 28);
+																																														panel_4.add(button_14);
+																																														
+																																																JLabel label_4 = new JLabel("Pesquisar:");
+																																																label_4.setBounds(17, 31, 78, 16);
+																																																panel_4.add(label_4);
+																																																
+																																																		JButton button_15 = new JButton("Cadastrar");
+																																																		button_15.addActionListener(new ActionListener() {
+																																																			public void actionPerformed(ActionEvent arg0) {
+
+																																																				try {
+																																																					cadastraEntrada();
+																																																					listarLotes();
+																																																					limparLote();
+																																																				} catch (Exception e) {
+																																																					// TODO Auto-generated catch block
+																																																					e.printStackTrace();
+																																																				}
+																																																			}
+
+																																																		});
+																																																		button_15.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-salvar-25 (2).png")));
+																																																		button_15.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+																																																		button_15.setBounds(39, 633, 117, 37);
+																																																		panel_2.add(button_15);
+																																																				
+																																																						JButton button_17 = new JButton("Limpar");
+																																																						button_17.addActionListener(new ActionListener() {
+																																																							public void actionPerformed(ActionEvent e) {
+
+																																																								limparLote();
+
+																																																							}
+																																																						});
+																																																						button_17.setIcon(
+																																																								new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
+																																																						button_17.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+																																																						button_17.setBounds(397, 633, 106, 37);
+																																																						panel_2.add(button_17);
+																																																						
+																																																								JButton button_12 = new JButton("Atualizar");
+																																																								button_12.setBounds(515, 633, 115, 37);
+																																																								panel_2.add(button_12);
+																																																								button_12.addActionListener(new ActionListener() {
+																																																									public void actionPerformed(ActionEvent arg0) {
+
+																																																										try {
+																																																											listarLotes();
+																																																										} catch (Exception e) {
+																																																											// TODO Auto-generated catch block
+																																																											e.printStackTrace();
+																																																										}
+
+																																																									}
+																																																								});
+																																																								button_12.setIcon(
+																																																										new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-actualizar-25 (1).png")));
+																																																								
+																																																										JButton btnDetalhes = new JButton("Detalhes");
+																																																										btnDetalhes.setBounds(196, 633, 175, 37);
+																																																										panel_2.add(btnDetalhes);
+																																																										btnDetalhes.addActionListener(new ActionListener() {
+																																																											public void actionPerformed(ActionEvent e) {
+
+																																																												try {
+																																																													preencherCamposLote();
+																																																												} catch (Exception e1) {
+																																																													// TODO Auto-generated catch block
+																																																													e1.printStackTrace();
+																																																												}
+
+																																																											}
+																																																										});
+																																																										btnDetalhes.setIcon(
+																																																												new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-ver-detalhes-25.png")));
+
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Cadastro de Produtos", null, panel_1, null);
-		
 		panel_1.setLayout(null);
-		
+
 		txtCodigo = new JTextField();
-		txtCodigo.setColumns(10);
 		txtCodigo.setBounds(29, 117, 56, 26);
+		txtCodigo.setColumns(10);
 		panel_1.add(txtCodigo);
-		
-		JLabel label_2 = new JLabel("C\u00D3DIGO:");
-		label_2.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		label_2.setBounds(29, 92, 56, 14);
-		panel_1.add(label_2);
-		
-		JLabel label_3 = new JLabel("NOME:");
-		label_3.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		label_3.setBounds(178, 92, 43, 14);
-		panel_1.add(label_3);
-		
+
+		lblCodigoProduto = new JLabel("C\u00D3DIGO:");
+		lblCodigoProduto.setBounds(29, 92, 56, 14);
+		lblCodigoProduto.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		panel_1.add(lblCodigoProduto);
+
+		lblNome = new JLabel("NOME:");
+		lblNome.setBounds(178, 92, 43, 14);
+		lblNome.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		panel_1.add(lblNome);
+
 		txtNome = new JTextField();
-		txtNome.setColumns(10);
+		txtNome.setLocation(178, 0);
 		txtNome.setBounds(178, 117, 240, 26);
+		txtNome.setColumns(10);
 		panel_1.add(txtNome);
-		
+
 		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(30, 329, 610, 272);
 		panel_3.setLayout(null);
-		panel_3.setBorder(new TitledBorder(null, "Produtos Cadastrados", TitledBorder.LEFT, TitledBorder.TOP, null,
-								new Color(0, 0, 0)));
-		panel_3.setBounds(29, 374, 610, 272);
+		panel_3.setBorder(new TitledBorder(null, "Produtos Cadastrados", TitledBorder.LEFT, TitledBorder.TOP, null,
+
+				new Color(0, 0, 0)));
 		panel_1.add(panel_3);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(17, 65, 576, 188);
 		panel_3.add(scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"C\u00F3digo", "Nome", "Tipo"
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "C\u00F3digo", "Nome", "Tipo" }));
 		scrollPane.setViewportView(table);
-		
+
+		JButton button_5 = new JButton("Atualizar");
+		button_5.setIcon(
+				new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-actualizar-25 (1).png")));
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					pesquisarProdutoTodos();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		button_5.setBounds(478, 25, 115, 28);
+		panel_3.add(button_5);
+
+		JButton button_6 = new JButton("Preencher campos");
+		button_6.setIcon(
+				new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-cor-de-preenchimento-25.png")));
+		button_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					preencherCampos();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		button_6.setBounds(301, 25, 165, 28);
+		panel_3.add(button_6);
+
 		txtPesquisa = new JTextField();
 		txtPesquisa.setColumns(10);
 		txtPesquisa.setBounds(96, 25, 57, 28);
 		panel_3.add(txtPesquisa);
-		
+
 		JButton button_7 = new JButton("");
-		button_7.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-pesquisar-filled-25.png")));
+		button_7.setIcon(
+				new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-pesquisar-filled-25.png")));
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
 
 					Pattern patternString = Pattern.compile("[A-Z]");
@@ -535,101 +578,123 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 
 					e1.printStackTrace();
 				}
-				
+
 			}
 		});
 		button_7.setBounds(181, 25, 47, 28);
 		panel_3.add(button_7);
-		
+
 		JLabel label_8 = new JLabel("Pesquisar:");
 		label_8.setBounds(17, 31, 78, 16);
 		panel_3.add(label_8);
-		
+
 		JSeparator separator_4 = new JSeparator();
 		separator_4.setBounds(214, 28, 314, 2);
 		panel_1.add(separator_4);
-		
+
 		JButton button_8 = new JButton("Limpar");
-		button_8.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
+		button_8.setBounds(388, 629, 106, 37);
+		button_8.setIcon(
+				new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				limpar();
-				
+
 			}
 		});
 		button_8.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		button_8.setBounds(379, 670, 106, 37);
 		panel_1.add(button_8);
-		
-		JLabel lblTipo = new JLabel("TIPO:");
-		lblTipo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+
+		lblTipo = new JLabel("TIPO:");
 		lblTipo.setBounds(485, 91, 55, 16);
+		lblTipo.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		panel_1.add(lblTipo);
-		
+
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"CONGELADO", "RESFRIADO", "TEMPERADO"}));
 		comboBox.setBounds(485, 117, 117, 26);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {" ", "CONGELADO", "RESFRIADO", "TEMPERADO" }));
 		panel_1.add(comboBox);
-		
+
+		JButton button_9 = new JButton("Excluir");
+		button_9.setBounds(524, 629, 100, 37);
+		button_9.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-excluir-25.png")));
+		button_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					delete();
+					pesquisarProdutoTodos();
+					limpar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		button_9.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		panel_1.add(button_9);
+
+		JButton button_10 = new JButton("Alterar");
+		button_10.setBounds(214, 629, 106, 37);
+		button_10.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-alterar-25.png")));
+		button_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+					alteraProduto();
+					pesquisarProdutoTodos();
+					limpar();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		button_10.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		panel_1.add(button_10);
+
 		JButton button_11 = new JButton("Cadastrar");
+		button_11.setBounds(29, 629, 117, 37);
 		button_11.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-salvar-25 (2).png")));
 		button_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					cadastra();
+					pesquisarProdutoTodos();
+					limpar();
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 		button_11.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		button_11.setBounds(29, 670, 117, 37);
 		panel_1.add(button_11);
-		
+
 		JLabel label_10 = new JLabel("CADASTRO DE PRODUTOS");
+		label_10.setBounds(214, 6, 314, 26);
 		label_10.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-caixa-25.png")));
 		label_10.setFont(new Font("Segoe UI", Font.BOLD, 22));
-		label_10.setBounds(214, 6, 314, 26);
 		panel_1.add(label_10);
 		
-		JButton btnDetalhes_1 = new JButton("Detalhes");
-		btnDetalhes_1.setBounds(178, 670, 165, 37);
-		panel_1.add(btnDetalhes_1);
-		btnDetalhes_1.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-ver-detalhes-25.png")));
+		textField = new JTextField();
+		textField.setBounds(146, 106, 0, 0);
+		panel_1.add(textField);
 		
-		JButton button_5 = new JButton("Atualizar");
-		button_5.setBounds(507, 670, 115, 37);
-		panel_1.add(button_5);
-		button_5.setIcon(new ImageIcon(CadastroProdutosViewFuncionario.class.getResource("/imagens/icons8-actualizar-25 (1).png")));
-		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{separator, button, button_1, button_2, button_3, separator_1, label, separator_3, lblFuncionarios, separator_2, panel}));
-		button_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					pesquisarProdutoTodos();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnDetalhes_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				try {
-					preencherCampos();
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
-			}
-		});
+		textField_1 = new JTextField();
+		textField_1.setBounds(133, 92, 0, 0);
+		panel_1.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(48, 92, 0, 0);
+		panel_1.add(textField_2);
+		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{separator, button, button_1, button_2, button_3, separator_1, label, separator_3, lblFuncionario, separator_2, panel}));
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -646,7 +711,7 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		DefaultTableModel val = (DefaultTableModel) table.getModel();
 		val.addRow(new String[] { Integer.toString(pVO.getCodigo()), pVO.getNome(), result,
 				Double.toString(pVO.getValor()), Integer.toString(pVO.getQuan()), Double.toString(pVO.getPeso()),
-				pVO.getTipo()});
+				pVO.getTipo() });
 
 	}
 
@@ -655,15 +720,22 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		ProdutoController produtoController = new ProdutoController();
 
 		String tipo = comboBox.getSelectedItem().toString();
-		produtoVO.setCodigo(Integer.parseInt(txtCodigo.getText().trim()));
+		if (!txtCodigo.getText().trim().equals("")) {
+			try {
+				produtoVO.setCodigo(Integer.parseInt(txtCodigo.getText().trim()));
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+
 		produtoVO.setNome(txtNome.getText().trim());
-//		produtoVO.setData(txtData.getDate());
-//		produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
-//		produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
-//		produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
+		// produtoVO.setData(txtData.getDate());
+		// produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
+		// produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
+		// produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
 		produtoVO.setTipo(tipo);
 
-		produtoController.cadastroDeProduto(produtoVO);
+		produtoController.cadastroDeProdutoFuncionario(produtoVO);
 
 		limpar();
 
@@ -683,17 +755,16 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 
 			String txt = Integer.toString(produtoVO.getCodigo());
 
-//			SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd");
-//			SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
-//
-//			String result = out.format(in.parse(produtoVO.getData().toString()));
-//
-//			String peso = Double.toString(produtoVO.getPeso());
-//			String quantidade = Integer.toString(produtoVO.getQuan());
-//			String valor = Double.toString(produtoVO.getValor());
+			// SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd");
+			// SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+			//
+			// String result = out.format(in.parse(produtoVO.getData().toString()));
+			//
+			// String peso = Double.toString(produtoVO.getPeso());
+			// String quantidade = Integer.toString(produtoVO.getQuan());
+			// String valor = Double.toString(produtoVO.getValor());
 
-			dados.addRow(
-					new String[] { txt, produtoVO.getNome(), produtoVO.getTipo() });
+			dados.addRow(new String[] { txt, produtoVO.getNome(), produtoVO.getTipo() });
 
 		}
 
@@ -732,10 +803,10 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		txtCodigo.enable(false);
 		txtCodigo.setText(Integer.toString(produtoVO.getCodigo()));
 		txtNome.setText(produtoVO.getNome());
-//		txtData.setDate(produtoVO.getData());
-//		txtValor.setText(Double.toString(produtoVO.getValor()));
-//		txtQuantidade.setText(Integer.toString(produtoVO.getQuan()));
-//		txtPeso.setText(Double.toString(produtoVO.getPeso()));
+		// txtData.setDate(produtoVO.getData());
+		// txtValor.setText(Double.toString(produtoVO.getValor()));
+		// txtQuantidade.setText(Integer.toString(produtoVO.getQuan()));
+		// txtPeso.setText(Double.toString(produtoVO.getPeso()));
 
 	}
 
@@ -753,10 +824,10 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		int txt = Integer.parseInt(txtCodigo.getText());
 		produtoVO.setCodigo(txt);
 		produtoVO.setNome(txtNome.getText().trim());
-//		produtoVO.setData(txtData.getDate());
-//		produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
-//		produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
-//		produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
+		// produtoVO.setData(txtData.getDate());
+		// produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
+		// produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
+		// produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
 		produtoVO.setTipo(tipo);
 
 		ProdutoController controller = new ProdutoController();
@@ -767,67 +838,107 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 	}
 
 	private void limpar() {
-
+		txtCodigo.enable(true);
+		;
 		txtCodigo.setText("");
 		txtNome.setText("");
-//		txtValor.setText("");
-//		txtQuantidade.setText("");
-//		txtPeso.setText("");
+		// txtValor.setText("");
+		// txtQuantidade.setText("");
+		// txtPeso.setText("");
 
 		txtCodigo.requestFocus();
 
 	}
+
 	private void pesquisarPorNome(String nome) throws Exception {
 		cleanTable(table);
-		
-		ProdutoController controller = new ProdutoController();
-		 
-		List<ProdutoVO> lista = controller.pesquisarPorNome(nome);
-		
-		for (ProdutoVO produtoVO : lista) {
-		DefaultTableModel dados = (DefaultTableModel) table.getModel();	
-		
-		String codigo = Integer.toString(produtoVO.getCodigo());
-		SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd");
-		SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
 
-		String data = out.format(in.parse(produtoVO.getData().toString()));
-		String valor = Double.toString(produtoVO.getValor());
-		String quantidade = Double.toString(produtoVO.getQuan());
-		String peso = Double.toString(produtoVO.getPeso());
-		
-		
-		dados.addRow(new String[]{codigo,produtoVO.getNome(),data,valor,quantidade,peso,produtoVO.getTipo()});
-		
-		
-		
+		ProdutoController controller = new ProdutoController();
+
+		List<ProdutoVO> lista = controller.pesquisarPorNome(nome);
+
+		for (ProdutoVO produtoVO : lista) {
+			DefaultTableModel dados = (DefaultTableModel) table.getModel();
+
+			String codigo = Integer.toString(produtoVO.getCodigo());
+			SimpleDateFormat out = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+
+			String data = out.format(in.parse(produtoVO.getData().toString()));
+			String valor = Double.toString(produtoVO.getValor());
+			String quantidade = Double.toString(produtoVO.getQuan());
+			String peso = Double.toString(produtoVO.getPeso());
+
+			dados.addRow(
+					new String[] { codigo, produtoVO.getNome(), data, valor, quantidade, peso, produtoVO.getTipo() });
+
 		}
-		
-		
+
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private void cadastraEntrada() throws Exception {
 		ProdutoVO produtoVO = new ProdutoVO();
 		ProdutoController produtoController = new ProdutoController();
 
 		String tipo = comboBox.getSelectedItem().toString();
-		produtoVO.setLote(Integer.parseInt(txtLote.getText()));
-		produtoVO.setCodigo(Integer.parseInt(txtCodProd.getText().trim()));
-		produtoVO.setData(txtData.getDate());
-		produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
-		produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
-		produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
+		// produtoVO.setLote(Integer.parseInt(txtLote.getText()));
+		if (!txtCodProd.getText().trim().equals("")) {
+			try {
+				produtoVO.setCodigo(Integer.parseInt(txtCodProd.getText().trim()));
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Digite apenas números", "Código Inválido",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		if (txtData.getDate() != null) {
+			try {
+				produtoVO.setData(txtData.getDate());
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Digite uma data válida", "Data Inválida",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
 
-		produtoController.cadastroDeEntrada(produtoVO);
+		if (!txtValor.getText().trim().equals("")) {
+			try {
+				produtoVO.setValor(Double.parseDouble(txtValor.getText().trim()));
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Digite apenas números", "Preço Inválido",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		if (!txtQuantidade.getText().trim().equals("")) {
+			try {
+				produtoVO.setQuan(Integer.parseInt(txtQuantidade.getText().trim()));
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Digite apenas números", "Quantidade Inválida",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		if (!txtPeso.getText().trim().equals("")) {
+			try {
+				produtoVO.setPeso(Double.parseDouble(txtPeso.getText().trim()));
+			} catch (Exception e) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(null, "Digite apenas números", "Peso Inválido",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+
+		produtoController.cadastroDeEntradaFuncionario(produtoVO);
 
 		limpar();
-		
+
 	}
-	
+
 	private void listarLotes() throws Exception {
-		
+
 		ProdutoController controller = new ProdutoController();
 		List<ProdutoVO> lista = new ArrayList<ProdutoVO>();
 
@@ -836,7 +947,6 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		cleanTable(table_1);
 
 		for (ProdutoVO produtoVO : lista) {
-			
 
 			DefaultTableModel dados = (DefaultTableModel) table_1.getModel();
 
@@ -852,15 +962,14 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 			String valor = Double.toString(produtoVO.getValor());
 			String lote = Integer.toString(produtoVO.getLote());
 
-			dados.addRow(
-					new String[] {lote, txt, result, valor, quantidade, peso});
+			dados.addRow(new String[] { lote, txt, result, valor, quantidade, peso });
 
 		}
-		
+
 	}
-	
+
 	private void preencherCamposLote() throws Exception {
-		
+
 		int linhaSelecionada = table_1.getSelectedRow();
 
 		String codigo = table_1.getValueAt(linhaSelecionada, 0).toString();
@@ -868,13 +977,13 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		ProdutoVO produtoVO = pesquisaPorLote(Integer.parseInt(codigo));
 
 		txtLote.enable(false);
-		txtLote.setText(Integer.toString(produtoVO.getCodigo()));
+		txtLote.setText(Integer.toString(produtoVO.getLote()));
 		txtCodProd.setText(Integer.toString(produtoVO.getCodigo()));
 		txtData.setDate(produtoVO.getData());
 		txtValor.setText(Double.toString(produtoVO.getValor()));
 		txtQuantidade.setText(Integer.toString(produtoVO.getQuan()));
 		txtPeso.setText(Double.toString(produtoVO.getPeso()));
-		
+
 	}
 
 	private ProdutoVO pesquisaPorLote(int codigo) throws Exception {
@@ -882,7 +991,7 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 
 		return produtoController.pesquisarPorLote(codigo);
 	}
-	
+
 	private void addDadosTableLote(ProdutoVO pesquisaPorLote) throws Exception {
 		cleanTable(table_1);
 
@@ -892,11 +1001,12 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		String result = out.format(in.parse(pesquisaPorLote.getData().toString()));
 
 		DefaultTableModel val = (DefaultTableModel) table_1.getModel();
-		val.addRow(new String[] { Integer.toString(pesquisaPorLote.getLote()), Integer.toString(pesquisaPorLote.getCodigo()), result,
-				Double.toString(pesquisaPorLote.getValor()), Integer.toString(pesquisaPorLote.getQuan()), Double.toString(pesquisaPorLote.getPeso())});
-		
+		val.addRow(new String[] { Integer.toString(pesquisaPorLote.getLote()),
+				Integer.toString(pesquisaPorLote.getCodigo()), result, Double.toString(pesquisaPorLote.getValor()),
+				Integer.toString(pesquisaPorLote.getQuan()), Double.toString(pesquisaPorLote.getPeso()) });
+
 	}
-	
+
 	private void alterarLote() throws Exception {
 		txtCodigo.enable(true);
 		ProdutoVO produtoVO = new ProdutoVO();
@@ -914,9 +1024,9 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		controller.alteraLote(produtoVO);
 
 		limparLote();
-		
+
 	}
-	
+
 	private void limparLote() {
 		txtCodigo.enable(true);
 		txtLote.setText("");
@@ -925,9 +1035,9 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		txtValor.setText("");
 		txtQuantidade.setText("");
 		txtPeso.setText("");
-		
+
 	}
-	
+
 	private void excluirLote() throws Exception {
 		txtCodigo.enable(true);
 		ProdutoVO produtoVO = new ProdutoVO();
@@ -939,6 +1049,6 @@ public class CadastroProdutosViewFuncionario extends JFrame {
 		JOptionPane.showMessageDialog(null, controller.excluirLote(txt));
 
 		limparLote();
-		
+
 	}
 }

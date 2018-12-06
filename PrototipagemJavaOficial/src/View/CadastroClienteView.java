@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.HeadlessException;
 
 import javax.swing.JSeparator;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -36,6 +38,7 @@ import javax.swing.UIManager;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -78,48 +81,65 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFormattedTextField;
 
-public class CadastroClienteView extends JFrame {
+public class CadastroClienteView extends JInternalFrame {
 
 	public JFrame frmCadastroDeCliente;
-	public JTextField txtCodigo;
-	public JTextField txtNome;
-	public JTextField txtRua;
-	public JTextField txtCep;
+	public static JTextField txtCodigo;
+	public static JTextField txtNome;
+	public static JTextField txtRua;
+	public static JTextField txtCep;
 	public static JComboBox comboBox;
-	public JComboBox comboBox2;
+	public  JComboBox comboBox2;
 	private JTextField txtPesquisa;
-	public String codigo;
-	public String nome;
-	public String fixo;
-	public String nextel;
-	public String celular;
-	public String cnpj;
-	public String cpf;
-	public String frmPag;
-	public String rua;
-	public String bairro;
-	public String num;
-	public String cep;
-	public String cidade;
+	public static String codigo;
+	public static String nome;
+	public static String fixo;
+	public static String nextel;
+	public static String celular;
+	public static String cnpj;
+	public static String cpf;
+	public static String frmPag;
+	public static String rua;
+	public static String bairro;
+	public static String num;
+	public static String cep;
+	public static String cidade;
 	private MaskFormatter ftmTelefone;
 	private MaskFormatter ftmCelular;
 	private MaskFormatter ftmNextel;
 	private MaskFormatter ftmCnpj;
 	private MaskFormatter ftmCpf;
 	private MaskFormatter ftmCep;
-	private JTextField txtFixo;
-	private JTextField txtNextel;
-	private JTextField txtCelular;
-	private JTextField txtCnpj;
-	private JTextField txtCpf;
-	private JTextField txtBairro;
-	private JTextField txtNumero;
-	private JTextField txtCidade;
+	public static JTextField txtFixo;
+	public static JTextField txtNextel;
+	public static JTextField txtCelular;
+	public static JTextField txtCnpj;
+	public static JTextField txtCpf;
+	public static JTextField txtBairro;
+	public static JTextField txtNumero;
+	public static JTextField txtCidade;
 	private static JTable table;
-	private JTextField txtrua;
-	private JTextField txtemail;
-	private JTextField txtcomplemento;
-
+	public static JTextField txtrua;
+	public static JTextField txtemail;
+	public static JTextField txtcomplemento;
+	public static JLabel lblId;
+	public static JLabel lblNome;
+	public static JLabel lblTelResidencial;
+	public static JLabel lblCpfopcional;
+	public static JLabel lblCnpj;
+	public static JLabel lblTelCelular;
+	public static JLabel lblTelComercial;
+	public static JLabel lblCep;
+	public static JLabel lblBairro;
+	public static JLabel lblNmero;
+	public static JLabel lblRua;
+	public static JLabel lblCidade; 
+	public static JLabel lblCadastroCliente;
+	public static JLabel lblPesquisarPorCdigo;
+	public static JLabel lblComplemento;
+	public static JLabel lblEmail;
+	public static JLabel lblFormaDePagamento;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -144,6 +164,7 @@ public class CadastroClienteView extends JFrame {
 					window.setVisible(true);
 
 					pesquisarClienteTodos();
+					window.setLocation(null);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -156,7 +177,9 @@ public class CadastroClienteView extends JFrame {
 	 * Create the application.
 	 */
 	public CadastroClienteView() {
+		
 		initialize();
+		
 	}
 
 	/**
@@ -171,6 +194,7 @@ public class CadastroClienteView extends JFrame {
 		frmCadastroDeCliente.setTitle("Cadastro de Cliente");
 		frmCadastroDeCliente.setBounds(100, 100, 953, 805);
 		frmCadastroDeCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 
 		Panel Painel = new Panel();
 		Painel.setBounds(0, 0, 272, 777);
@@ -186,7 +210,7 @@ public class CadastroClienteView extends JFrame {
 				menu.setVisible(true);
 				menu.setLocationRelativeTo(null);
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
-				
+
 				((Window) comp).dispose();
 
 			}
@@ -200,20 +224,18 @@ public class CadastroClienteView extends JFrame {
 		separator.setBounds(10, 97, 199, 2);
 
 		JButton btnNewButton_3 = new JButton("Cadastro de Clientes");
-		btnNewButton_3.setMnemonic(KeyEvent.VK_1);
+		btnNewButton_3 .setMnemonic(KeyEvent.VK_1);
 		btnNewButton_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton_3.setBounds(0, 131, 270, 48);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				CadastroClienteView windowCliente = new CadastroClienteView();
-			windowCliente.frmCadastroDeCliente.setLocationRelativeTo(null);
 				windowCliente.frmCadastroDeCliente.setVisible(true);
-				
+				windowCliente.frmCadastroDeCliente.setLocationRelativeTo(null);
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
-				
+
 				((Window) comp).dispose();
-				
 
 			}
 		});
@@ -232,10 +254,9 @@ public class CadastroClienteView extends JFrame {
 		btnCadastroDeFornecedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Fornecedor fornecedor = new Fornecedor();
-				fornecedor.frame.setVisible(true);
-				fornecedor.frame.setLocationRelativeTo(null);
-
+				CadastroFornecedorView cadastroFornecedorView = new CadastroFornecedorView();
+				cadastroFornecedorView.frame.setVisible(true);
+				cadastroFornecedorView.frame.setLocationRelativeTo(null);
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
 
 				((Window) comp).dispose();
@@ -259,7 +280,6 @@ public class CadastroClienteView extends JFrame {
 				CadastroProdutosView produto = new CadastroProdutosView();
 				produto.setVisible(true);
 				produto.setLocationRelativeTo(null);
-
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
 
 				((Window) comp).dispose();
@@ -284,7 +304,6 @@ public class CadastroClienteView extends JFrame {
 				VendasView vendas = new VendasView();
 				vendas.setVisible(true);
 				vendas.setLocationRelativeTo(null);
-
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
 
 				((Window) comp).dispose();
@@ -300,7 +319,7 @@ public class CadastroClienteView extends JFrame {
 		btnVendas.setBackground(new Color(17, 144, 147));
 
 		JButton btnEstoque = new JButton("Estoque");
-		btnEstoque.setMnemonic(KeyEvent.VK_5);
+		btnEstoque .setMnemonic(KeyEvent.VK_5);
 		btnEstoque.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnEstoque.setBounds(0, 371, 270, 48);
 		btnEstoque.addActionListener(new ActionListener() {
@@ -309,7 +328,6 @@ public class CadastroClienteView extends JFrame {
 				ViewEstoqueDesign estoque = new ViewEstoqueDesign();
 				estoque.setVisible(true);
 				estoque.setLocationRelativeTo(null);
-
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
 
 				((Window) comp).dispose();
@@ -332,15 +350,16 @@ public class CadastroClienteView extends JFrame {
 		lblAdministrador.setForeground(new Color(255, 255, 255));
 		lblAdministrador.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblId = new JLabel("C\u00D3DIGO:");
+		lblId = new JLabel("C\u00D3DIGO:");
 		lblId.setBounds(314, 74, 50, 14);
 		lblId.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
 
 		txtCodigo = new JTextField();
 		txtCodigo.setBounds(314, 99, 89, 30);
 		txtCodigo.setColumns(10);
 
-		JLabel lblNome = new JLabel("NOME:");
+		lblNome = new JLabel("NOME:");
 		lblNome.setBounds(425, 74, 38, 14);
 		lblNome.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
@@ -348,15 +367,15 @@ public class CadastroClienteView extends JFrame {
 		txtNome.setBounds(425, 99, 249, 30);
 		txtNome.setColumns(10);
 
-		JLabel lblTelResidencial = new JLabel("TEL. FIXO(opcional):");
+		lblTelResidencial = new JLabel("TEL. FIXO:");
 		lblTelResidencial.setBounds(314, 165, 161, 14);
-		lblTelResidencial.setFont(new Font("Arial", Font.BOLD, 11));
+		lblTelResidencial.setFont(new Font("Arial", Font.BOLD, 12));
 
-		JLabel lblTelComercial = new JLabel("TEL. NEXTEL(opcional)");
+		lblTelComercial = new JLabel("TEL. NEXTEL:");
 		lblTelComercial.setBounds(530, 164, 144, 15);
 		lblTelComercial.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblTelCelular = new JLabel("TEL. CELULAR (opcional):");
+		lblTelCelular = new JLabel("TEL. CELULAR:");
 		lblTelCelular.setBounds(739, 164, 136, 15);
 		lblTelCelular.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
@@ -366,20 +385,22 @@ public class CadastroClienteView extends JFrame {
 		panel_3.setBorder(new TitledBorder(null, "Clientes Cadastrados", TitledBorder.LEFT, TitledBorder.TOP, null,
 				new Color(0, 0, 0)));
 
-		JLabel lblCnpjopcional = new JLabel("CNPJ(opcional):");
-		lblCnpjopcional.setBounds(314, 244, 161, 14);
-		lblCnpjopcional.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblCnpj = new JLabel("CNPJ:");
+		lblCnpj.setBounds(314, 244, 161, 14);
+		lblCnpj.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblCpfopcional = new JLabel("CPF(opcional):");
+		
+		
+		lblCpfopcional = new JLabel("CPF:");
 		lblCpfopcional.setBounds(540, 244, 82, 14);
 		lblCpfopcional.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 		comboBox = new JComboBox();
 		comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		comboBox.setBounds(739, 276, 142, 30);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "", "BOLETO", "DINHEIRO", "CART\u00C3O", "CHEQUE" }));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "BOLETO", "DINHEIRO", "CART\u00C3O", "CHEQUE"}));
 
-		JLabel lblFormaDePagamento = new JLabel("FORMA DE PAGAMENTO:");
+		lblFormaDePagamento = new JLabel("FORMA DE PAGAMENTO:");
 		lblFormaDePagamento.setBounds(739, 244, 152, 14);
 		lblFormaDePagamento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
@@ -391,6 +412,7 @@ public class CadastroClienteView extends JFrame {
 				try {
 					alterarCliente();
 					pesquisarClienteTodos();
+					limpar();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -435,22 +457,24 @@ public class CadastroClienteView extends JFrame {
 			}
 		});
 
-		JLabel lblRua = new JLabel("RUA:");
+		lblRua = new JLabel("RUA:");
 		lblRua.setBounds(452, 318, 161, 14);
 		lblRua.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblBairro = new JLabel("BAIRRO:");
+		lblBairro = new JLabel("BAIRRO:");
 		lblBairro.setBounds(314, 394, 99, 14);
 		lblBairro.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblNmero = new JLabel("N\u00DAMERO:");
+		lblNmero = new JLabel("N\u00DAMERO:");
 		lblNmero.setBounds(761, 325, 55, 14);
 		lblNmero.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblCep = new JLabel("CEP");
+		lblCep = new JLabel("CEP");
 		lblCep.setBounds(314, 325, 161, 14);
 		lblCep.setFont(new Font("Segoe UI", Font.BOLD, 12));
-
+		
+		
+		
 		txtCep = new JTextField();
 		try {
 			ftmCep = new MaskFormatter("#####-###");
@@ -480,19 +504,17 @@ public class CadastroClienteView extends JFrame {
 		});
 		txtCep.setBounds(314, 344, 122, 30);
 
-		JLabel lblCidade = new JLabel("CIDADE");
+		lblCidade = new JLabel("CIDADE");
 		lblCidade.setBounds(452, 394, 57, 14);
 		lblCidade.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblCadastroCliente = new JLabel("CADASTRO CLIENTE");
-		lblCadastroCliente.setIcon(new ImageIcon(
-				CadastroClienteView.class.getResource("/imagens/icons8-gest\u00E3o-de-cliente-filled-25.png")));
-		// lblCadastroCliente.setIcon(new
-		// ImageIcon(CadastroClienteView.class.getResource("/imagens/icons8-gest\u00E3o-de-cliente-filled-25.png")));
+		lblCadastroCliente = new JLabel("CADASTRO CLIENTE");
+		lblCadastroCliente.setIcon(new ImageIcon(CadastroClienteView.class.getResource("/imagens/icons8-gest\u00E3o-de-cliente-filled-25.png")));
+		//lblCadastroCliente.setIcon(new ImageIcon(CadastroClienteView.class.getResource("/imagens/icons8-gest\u00E3o-de-cliente-filled-25.png")));
 		lblCadastroCliente.setBounds(487, 22, 242, 30);
 		lblCadastroCliente.setFont(new Font("Segoe UI", Font.BOLD, 22));
 
-		JLabel lblPesquisarPorCdigo = new JLabel("Pesquisar");
+		lblPesquisarPorCdigo = new JLabel("Pesquisar");
 		lblPesquisarPorCdigo.setBounds(16, 30, 62, 16);
 		lblPesquisarPorCdigo.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
@@ -518,7 +540,7 @@ public class CadastroClienteView extends JFrame {
 						pesquisarPorNome(txtPesquisa.getText());
 
 					}
-					// pesquisarPorNome(nome);
+				//	pesquisarPorNome(nome);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -526,7 +548,7 @@ public class CadastroClienteView extends JFrame {
 
 			}
 		});
-		txtPesquisa.setBounds(88, 24, 122, 28);
+		txtPesquisa.setBounds(88, 24, 174, 28);
 		txtPesquisa.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		txtPesquisa.setColumns(10);
 
@@ -539,9 +561,9 @@ public class CadastroClienteView extends JFrame {
 				try {
 					cadastraCliente();
 					pesquisarClienteTodos();
-
+					limpar();
+					
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage());
 					e1.printStackTrace();
 				}
 
@@ -562,14 +584,14 @@ public class CadastroClienteView extends JFrame {
 			e2.printStackTrace();
 		}
 
-		// try {
-		// ftmNextel = new MaskFormatter("(####)####-####");
-		txtNextel = new JFormattedTextField(ftmNextel);
-		txtNextel.setBounds(530, 191, 117, 30);
-		// } catch (ParseException e3) {
-		// TODO Auto-generated catch block
-		// e3.printStackTrace();
-		// }
+		//try {
+			//ftmNextel = new MaskFormatter("(####)####-####");
+			txtNextel = new JFormattedTextField(ftmNextel);
+			txtNextel.setBounds(530, 191, 117, 30);
+		//} catch (ParseException e3) {
+			// TODO Auto-generated catch block
+		//	e3.printStackTrace();
+	//	}
 
 		try {
 
@@ -591,17 +613,18 @@ public class CadastroClienteView extends JFrame {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		txtCnpj.setBounds(314, 276, 122, 30);
+		txtCnpj.setBounds(314, 276, 149, 30);
 
 		txtCpf = new JTextField();
 		try {
 			ftmCpf = new MaskFormatter("###.###.###-##");
 			txtCpf = new JFormattedTextField(ftmCpf);
 		} catch (ParseException e2) {
-
+			
 			e2.printStackTrace();
 		}
-		txtCpf.setBounds(530, 277, 117, 29);
+			txtCpf.setBounds(530, 277, 117, 29);
+		
 
 		txtBairro = new JTextField();
 		txtBairro.setBounds(314, 414, 117, 29);
@@ -630,7 +653,6 @@ public class CadastroClienteView extends JFrame {
 				Relatorios relatorios = new Relatorios();
 				relatorios.setVisible(true);
 				relatorios.setLocationRelativeTo(null);
-
 				Component comp = SwingUtilities.getRoot(frmCadastroDeCliente);
 
 				((Window) comp).dispose();
@@ -654,7 +676,7 @@ public class CadastroClienteView extends JFrame {
 		frmCadastroDeCliente.getContentPane().add(txtFixo);
 		frmCadastroDeCliente.getContentPane().add(txtNextel);
 		frmCadastroDeCliente.getContentPane().add(txtCelular);
-		frmCadastroDeCliente.getContentPane().add(lblCnpjopcional);
+		frmCadastroDeCliente.getContentPane().add(lblCnpj);
 		frmCadastroDeCliente.getContentPane().add(lblCpfopcional);
 		frmCadastroDeCliente.getContentPane().add(lblFormaDePagamento);
 		frmCadastroDeCliente.getContentPane().add(txtCnpj);
@@ -750,41 +772,42 @@ public class CadastroClienteView extends JFrame {
 		JFormattedTextField formattedTextField = new JFormattedTextField();
 		formattedTextField.setBounds(314, 191, 89, 28);
 		frmCadastroDeCliente.getContentPane().add(formattedTextField);
-
-		JLabel lblEmail = new JLabel("E-MAIL");
+		
+		lblEmail = new JLabel("E-MAIL:");
 		lblEmail.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblEmail.setForeground(Color.BLACK);
 		lblEmail.setBounds(739, 73, 55, 16);
 		frmCadastroDeCliente.getContentPane().add(lblEmail);
-
+		
 		txtemail = new JTextField();
 		txtemail.setBounds(739, 100, 168, 28);
 		frmCadastroDeCliente.getContentPane().add(txtemail);
 		txtemail.setColumns(10);
-
+		
 		txtcomplemento = new JTextField();
 		txtcomplemento.setBounds(584, 414, 158, 28);
 		frmCadastroDeCliente.getContentPane().add(txtcomplemento);
 		txtcomplemento.setColumns(10);
-
-		JLabel lblComplemento = new JLabel("COMPLEMENTO");
+		
+		lblComplemento = new JLabel("COMPLEMENTO");
 		lblComplemento.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblComplemento.setBounds(584, 393, 111, 16);
 		frmCadastroDeCliente.getContentPane().add(lblComplemento);
-
+		
 		comboBox2 = new JComboBox();
-		comboBox2.setModel(new DefaultComboBoxModel(
-				new String[] { "", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA",
-						"PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+		comboBox2.setModel(new DefaultComboBoxModel(new String[] {"", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA",
+				"PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO"}));
 		comboBox2.setBounds(761, 415, 64, 26);
 		frmCadastroDeCliente.getContentPane().add(comboBox2);
-
+		
 		JLabel lblUf = new JLabel("UF");
 		lblUf.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblUf.setBounds(761, 393, 55, 16);
 		frmCadastroDeCliente.getContentPane().add(lblUf);
 
+		
 	}
+
 
 	public JTable getTable() {
 
@@ -793,12 +816,14 @@ public class CadastroClienteView extends JFrame {
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	
+	
 	private void cadastraCliente() throws Exception {
 		ClienteVO cVO = new ClienteVO();
 		ClienteController cController = new ClienteController();
 
 		cVO = getDados();
-		// limpar();
+		//limpar();
 
 		cController.cadastroDeCliente(cVO);
 
@@ -809,12 +834,14 @@ public class CadastroClienteView extends JFrame {
 		ClienteVO clienteVO = new ClienteVO();
 
 		String pagamento = comboBox.getSelectedItem().toString();
-
-		try {
-			clienteVO.setCodigo(Integer.parseInt(txtCodigo.getText().trim()));
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Digite apenas números no campo do Código");
+		if (! txtCodigo.getText().trim().equals("")) {
+			try{
+				clienteVO.setCodigo(Integer.parseInt(txtCodigo.getText().trim()));
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(null, "Digite apenas números no campo do Código","Inválido",JOptionPane.WARNING_MESSAGE);
+				}
 		}
+		
 		clienteVO.setNome(txtNome.getText().trim());
 		clienteVO.setFixo(txtFixo.getText().trim());
 		clienteVO.setNextel(txtNextel.getText().trim());
@@ -831,12 +858,15 @@ public class CadastroClienteView extends JFrame {
 		clienteVO.setEmail(txtemail.getText().trim());
 		String uf = comboBox2.getSelectedItem().toString();
 		clienteVO.setUf(uf);
+	
 
 		return clienteVO;
 	}
 
+
 	private void limpar() {
 
+		
 		txtCodigo.setText("");
 		txtNome.setText("");
 		txtFixo.setText("");
@@ -854,6 +884,21 @@ public class CadastroClienteView extends JFrame {
 		comboBox2.setSelectedIndex(0);
 		comboBox.setSelectedIndex(0);
 		txtCodigo.requestFocus();
+		
+		CadastroClienteView.lblId.setForeground(Color.BLACK);
+		CadastroClienteView.lblCnpj.setForeground(Color.BLACK);
+		CadastroClienteView.lblComplemento.setForeground(Color.BLACK);
+		CadastroClienteView.lblCidade.setForeground(Color.BLACK);
+		CadastroClienteView.lblCpfopcional.setForeground(Color.BLACK);
+		CadastroClienteView.lblEmail.setForeground(Color.BLACK);
+		CadastroClienteView.lblTelResidencial.setForeground(Color.BLACK);
+		CadastroClienteView.lblTelCelular.setForeground(Color.BLACK);
+		CadastroClienteView.lblTelComercial.setForeground(Color.BLACK);
+		CadastroClienteView.lblNome.setForeground(Color.BLACK);
+		CadastroClienteView.lblNmero.setForeground(Color.BLACK);
+		CadastroClienteView.lblRua.setForeground(Color.BLACK);
+		CadastroClienteView.lblFormaDePagamento.setForeground(Color.BLACK);
+		
 	}
 
 	private static void pesquisarClienteTodos() throws Exception {
@@ -899,6 +944,8 @@ public class CadastroClienteView extends JFrame {
 			String codigo = table.getValueAt(linhaSelecionada, 0).toString();
 
 			ClienteVO clienteVO = pesquisaPorCodigo(Integer.parseInt(codigo));
+
+
 
 			txtCodigo.enable(false);
 			txtCodigo.setText(Integer.toString(clienteVO.getCodigo()));
@@ -973,7 +1020,7 @@ public class CadastroClienteView extends JFrame {
 		ClienteController controller = new ClienteController();
 		controller.alteraCliente(clienteVO);
 
-		// limpar();
+		//limpar();
 	}
 
 	private void pesquisarPorNome(String nome) throws Exception {
@@ -1001,15 +1048,18 @@ public class CadastroClienteView extends JFrame {
 
 		if (webServiceCep.wasSuccessful()) {
 
+			
 			txtrua.setText(webServiceCep.getLogradouroFull());
 			txtBairro.setText(webServiceCep.getBairro());
 			txtCidade.setText(webServiceCep.getCidade());
 			comboBox2.setSelectedItem(webServiceCep.getUf());
 
 		} else {
-			JOptionPane.showMessageDialog(null, "cep não encontrado");
+			JOptionPane.showMessageDialog(null,"Cep não encontrado");
 
 		}
 
 	}
 }
+
+	

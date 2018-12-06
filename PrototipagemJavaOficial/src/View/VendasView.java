@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,17 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Panel;
 import java.awt.Color;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
 import javax.swing.border.EtchedBorder;
 import java.awt.Font;
-import java.awt.HeadlessException;
+
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -30,13 +27,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JComboBox;
-import java.awt.Toolkit;
+
 import com.toedter.calendar.JDateChooser;
 
 import Controller.VendasController;
@@ -44,22 +40,28 @@ import VO.VendasVO;
 
 import java.awt.Cursor;
 import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+
 import java.awt.event.KeyEvent;
 
 public class VendasView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField codigoVen;
-	private JTextField txtValorProd;
-	private JTextField txtQuanProd;
-	private JTextField txtPesoProd;
+	public static JTextField txtValorProd;
+	public static JTextField txtQuanProd;
+	public static JTextField txtPesoProd;
 	private static JTable table;
 	private JTextField txtpesquisa;
-	private JTextField txtCodProd;
+	public static JTextField txtCodProd;
 	static VendasView frameVendas = new VendasView();
-	private JTextField txtCodigoCli;
-	private JDateChooser txtdata;
+	public static JTextField txtCodigoCli;
+	public static JDateChooser txtdata;
+	public static JLabel lblCdigoDoCliente;
+	public static JLabel lblCdigoDoProduto;
+	public static JLabel lblValorTotal;
+	public static JLabel lblQuantidadeVendida;
+	public static JLabel lblDataDaVenda;
+	public static JLabel lblPesoTotal;
 
 	/**
 	 * Launch the application.
@@ -117,13 +119,13 @@ public class VendasView extends JFrame {
 		setResizable(false);
 		setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 955, 804);
+		setBounds(100, 100, 953, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		Panel panel = new Panel();
-		panel.setBounds(0, 0, 270, 776);
+		panel.setBounds(0, 0, 270, 672);
 		panel.setBackground(new Color(17, 144, 147));
 
 		JSeparator separator = new JSeparator();
@@ -139,7 +141,6 @@ public class VendasView extends JFrame {
 				CadastroClienteView window = new CadastroClienteView();
 				window.frmCadastroDeCliente.setVisible(true);
 				window.frmCadastroDeCliente.setLocationRelativeTo(null);
-
 				dispose();
 			}
 		});
@@ -160,7 +161,6 @@ public class VendasView extends JFrame {
 				ViewEstoqueDesign estoque = new ViewEstoqueDesign();
 				estoque.setVisible(true);
 				estoque.setLocationRelativeTo(null);
-
 				dispose();
 			}
 		});
@@ -177,10 +177,9 @@ public class VendasView extends JFrame {
 		button_2.setBounds(0, 191, 270, 48);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Fornecedor fornecedor = new Fornecedor();
-				fornecedor.frame.setVisible(true);
-				fornecedor.frame.setLocationRelativeTo(null);
-
+				CadastroFornecedorView cadastroFornecedorView = new CadastroFornecedorView();
+				cadastroFornecedorView.frame.setVisible(true);
+				cadastroFornecedorView.frame.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -201,7 +200,6 @@ public class VendasView extends JFrame {
 				CadastroProdutosView produto = new CadastroProdutosView();
 				produto.setVisible(true);
 				produto.setLocationRelativeTo(null);
-
 				dispose();
 			}
 		});
@@ -223,7 +221,6 @@ public class VendasView extends JFrame {
 					VendasView vendas = new VendasView();
 					vendas.setVisible(true);
 					vendas.setLocationRelativeTo(null);
-
 					dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -248,9 +245,8 @@ public class VendasView extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				ViewMenuDesign menu = new ViewMenuDesign();
-				
 				menu.setVisible(true);
-menu.setLocationRelativeTo(null);
+				menu.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
@@ -281,7 +277,7 @@ menu.setLocationRelativeTo(null);
 		lblCdigoDaVenda.setBounds(298, 111, 122, 14);
 		lblCdigoDaVenda.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblDataDaVenda = new JLabel("DATA DA VENDA:");
+		lblDataDaVenda = new JLabel("DATA DA VENDA:");
 		lblDataDaVenda.setBounds(298, 203, 117, 14);
 		lblDataDaVenda.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
@@ -289,22 +285,22 @@ menu.setLocationRelativeTo(null);
 		txtValorProd.setBounds(798, 136, 92, 26);
 		txtValorProd.setColumns(10);
 
-		JLabel lblValorTotal = new JLabel("VALOR TOTAL:");
+		lblValorTotal = new JLabel("VALOR TOTAL:");
 		lblValorTotal.setBounds(798, 111, 124, 14);
 		lblValorTotal.setToolTipText("");
 		lblValorTotal.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
 		txtQuanProd = new JTextField();
-		txtQuanProd.setText("   ");
+		txtQuanProd.setText("");
 		txtQuanProd.setBounds(700, 229, 92, 26);
 		txtQuanProd.setColumns(10);
 
-		JLabel lblQuantidadeVendida = new JLabel("QUANTIDADE VENDIDA:");
+		lblQuantidadeVendida = new JLabel("QUANTIDADE VENDIDA:");
 		lblQuantidadeVendida.setBounds(701, 203, 145, 14);
 		lblQuantidadeVendida.setToolTipText("");
 		lblQuantidadeVendida.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
-		JLabel lblPesoTotal = new JLabel("PESO TOTAL:");
+		lblPesoTotal = new JLabel("PESO TOTAL:");
 		lblPesoTotal.setBounds(527, 203, 137, 14);
 		lblPesoTotal.setToolTipText("");
 		lblPesoTotal.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -314,7 +310,7 @@ menu.setLocationRelativeTo(null);
 		txtPesoProd.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(287, 418, 656, 257);
+		panel_1.setBounds(287, 341, 656, 257);
 		panel_1.setBorder(new TitledBorder(null, "Vendas Cadastradas", TitledBorder.LEFT, TitledBorder.TOP, null,
 				new Color(0, 0, 0)));
 
@@ -366,10 +362,10 @@ menu.setLocationRelativeTo(null);
 		button_8.setBounds(267, 16, 47, 28);
 		button_8.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
-		JButton button_6 = new JButton("Salvar");
-		button_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button_6.setIcon(new ImageIcon(VendasView.class.getResource("/imagens/icons8-salvar-25 (2).png")));
-		button_6.addActionListener(new ActionListener() {
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCadastrar.setIcon(new ImageIcon(VendasView.class.getResource("/imagens/icons8-salvar-25 (2).png")));
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					cadastrar();
@@ -383,8 +379,8 @@ menu.setLocationRelativeTo(null);
 			}
 
 		});
-		button_6.setBounds(304, 715, 89, 37);
-		button_6.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		btnCadastrar.setBounds(298, 610, 119, 37);
+		btnCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 		JLabel lblVendas = new JLabel("VENDAS");
 		lblVendas.setIcon(new ImageIcon(VendasView.class.getResource("/imagens/icons8-vender-estoque-filled-25.png")));
@@ -395,7 +391,7 @@ menu.setLocationRelativeTo(null);
 		txtCodProd.setBounds(633, 136, 70, 26);
 		txtCodProd.setColumns(10);
 
-		JLabel lblCdigoDoProduto = new JLabel("C\u00D3DIGO DO PRODUTO:");
+		lblCdigoDoProduto = new JLabel("C\u00D3DIGO DO PRODUTO:");
 		lblCdigoDoProduto.setBounds(633, 111, 133, 14);
 		lblCdigoDoProduto.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
@@ -426,7 +422,6 @@ menu.setLocationRelativeTo(null);
 				Relatorios relatorios = new Relatorios();
 				relatorios.setVisible(true);
 				relatorios.setLocationRelativeTo(null);
-
 				dispose();
 			}
 		});
@@ -443,7 +438,7 @@ menu.setLocationRelativeTo(null);
 		contentPane.add(lblQuantidadeVendida);
 		contentPane.add(txtPesoProd);
 		contentPane.add(txtQuanProd);
-		contentPane.add(button_6);
+		contentPane.add(btnCadastrar);
 		contentPane.add(codigoVen);
 		contentPane.add(txtCodProd);
 		contentPane.add(lblCdigoDoProduto);
@@ -458,7 +453,6 @@ menu.setLocationRelativeTo(null);
 		panel_1.add(scrollPane);
 
 		txtdata = new JDateChooser();
-		txtdata.setDateFormatString("yyyy/MM/dd");
 		txtdata.setBounds(298, 227, 157, 28);
 		contentPane.add(txtdata);
 
@@ -471,21 +465,22 @@ menu.setLocationRelativeTo(null);
 		btnLimpar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLimpar.setIcon(new ImageIcon(VendasView.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
 		btnLimpar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		btnLimpar.setBounds(828, 715, 102, 37);
+		btnLimpar.setBounds(820, 610, 102, 37);
 		contentPane.add(btnLimpar);
 
 		txtCodigoCli = new JTextField();
+		txtCodigoCli.setLocation(448, 0);
 		txtCodigoCli.setBounds(448, 135, 70, 28);
 		contentPane.add(txtCodigoCli);
 		txtCodigoCli.setColumns(10);
 
-		JLabel lblCdigoDoCliente = new JLabel("C\u00D3DIGO DO CLIENTE:");
+		lblCdigoDoCliente = new JLabel("C\u00D3DIGO DO CLIENTE:");
 		lblCdigoDoCliente.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lblCdigoDoCliente.setBounds(448, 111, 122, 14);
 		contentPane.add(lblCdigoDoCliente);
 		
 				JButton btnPreencherCampos = new JButton("Detalhes");
-				btnPreencherCampos.setBounds(441, 715, 179, 37);
+				btnPreencherCampos.setBounds(435, 610, 179, 37);
 				contentPane.add(btnPreencherCampos);
 				btnPreencherCampos.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -504,7 +499,7 @@ menu.setLocationRelativeTo(null);
 						.setIcon(new ImageIcon(VendasView.class.getResource("/imagens/icons8-ver-detalhes-25.png")));
 				
 						JButton btnAtualizar = new JButton("Atualizar");
-						btnAtualizar.setBounds(659, 715, 118, 37);
+						btnAtualizar.setBounds(648, 610, 118, 37);
 						contentPane.add(btnAtualizar);
 						btnAtualizar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent arg0) {
@@ -533,18 +528,53 @@ menu.setLocationRelativeTo(null);
 	private void cadastrar() throws Exception {
 		VendasVO vendas = new VendasVO();
 		VendasController vendascontroller = new VendasController();
-
+		
 		//vendas.setCodigo(Integer.parseInt(codigoVen.getText().trim()));
-		vendas.setPeso(Double.parseDouble(txtPesoProd.getText().trim()));
-		vendas.setQuantidade(Integer.parseInt(txtQuanProd.getText().trim()));
-		vendas.setValor(Double.parseDouble(txtValorProd.getText().trim()));
-		vendas.setCodigoProduto(Integer.parseInt(txtCodProd.getText().trim()));
-		vendas.setDataVenda(txtdata.getDate());
-		vendas.setCodigocliente(Integer.parseInt(txtCodigoCli.getText().trim()));
-		//vendas.setLote(Integer.parseInt(txtLote.getText().trim()));
-
+		
+		if (! txtPesoProd.getText().trim().equals("")) {
+			
+			try {
+				vendas.setPeso(Double.parseDouble(txtPesoProd.getText().trim()));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas numero");
+			}
+		}
+		if (! txtQuanProd.getText().trim().equals("")) {
+			try {
+				vendas.setQuantidade(Integer.parseInt(txtQuanProd.getText().trim()));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas numero");
+			}
+		}
+		
+		if (! txtValorProd.getText().trim().equals("")) {
+			try {
+				vendas.setValor(Double.parseDouble(txtValorProd.getText().trim()));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas numero");
+			}
+		}
+		
+		if (! txtCodProd.getText().trim().equals("")) {
+			try {
+				vendas.setCodigoProduto(Integer.parseInt(txtCodProd.getText().trim()));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas numero");
+			}
+		}
+		
+		if (txtdata.getDate() != null) {
+			vendas.setDataVenda(txtdata.getDate());
+		}
+		
+		if (! txtCodigoCli.getText().trim().equals("")) {
+			try {
+				vendas.setCodigocliente(Integer.parseInt(txtCodigoCli.getText().trim()));
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas numero");
+			}
+		}
 		vendascontroller.cadastrarvendas(vendas);
-
 	}
 
 	private static void listarVendasTodos() throws Exception {
@@ -592,8 +622,16 @@ menu.setLocationRelativeTo(null);
 		txtPesoProd.setText("");
 		txtQuanProd.setText("");
 		txtValorProd.setText("");
-
 		codigoVen.requestFocus();
+		
+		
+		VendasView.lblCdigoDoCliente.setForeground(Color.BLACK);
+		VendasView.lblCdigoDoProduto.setForeground(Color.BLACK);
+		VendasView.lblDataDaVenda.setForeground(Color.BLACK);
+		VendasView.lblPesoTotal.setForeground(Color.BLACK);
+		VendasView.lblQuantidadeVendida.setForeground(Color.BLACK);
+		VendasView.lblValorTotal.setForeground(Color.BLACK);
+		
 	}
 
 	private void preencher() throws Exception {
@@ -609,6 +647,14 @@ menu.setLocationRelativeTo(null);
 		txtPesoProd.setText(Double.toString(vendasVO.getPeso()));
 		txtQuanProd.setText(Integer.toString(vendasVO.getQuantidade()));
 		txtValorProd.setText(Double.toString(vendasVO.getValor()));
+		
+		VendasView.txtCodigoCli.setBorder(BorderFactory.createLoweredBevelBorder());
+		VendasView.txtCodProd.setBorder(BorderFactory.createLoweredBevelBorder());
+		VendasView.txtdata.setBorder(BorderFactory.createLoweredBevelBorder());
+		VendasView.txtPesoProd.setBorder(BorderFactory.createLoweredBevelBorder());
+		VendasView.txtQuanProd.setBorder(BorderFactory.createLoweredBevelBorder());
+		VendasView.txtValorProd.setBorder(BorderFactory.createLoweredBevelBorder());
+		
 
 	}
 

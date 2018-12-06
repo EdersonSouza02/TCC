@@ -252,4 +252,21 @@ public class ProdutoDAO {
 
 		return retorno;
 	}
+
+	public boolean verificaExistenciaCodigoProduto(int codigo) throws SQLException {
+		PreparedStatement preparedStatement = this.connection
+				.prepareStatement("select Codigo_Produto from Produto where Codigo_Produto=?");
+		int parameterIndex = 1;
+		preparedStatement.setInt(parameterIndex++, codigo);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			return true;
+			//Produto JA EXISTE
+
+		} else {
+			//Produto NOVO
+			return false;
+		}
+		
+	}
 }

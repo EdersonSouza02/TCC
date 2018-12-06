@@ -109,7 +109,6 @@ public class ViewEstoqueDesign extends JFrame {
 				
 			}
 			
-			listarTodos();
 		} catch( Exception ex) {
 			System.err.println(ex);
 		}
@@ -451,6 +450,13 @@ public class ViewEstoqueDesign extends JFrame {
 		btnNewButton_2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		btnNewButton_2.setBounds(414, 34, 141, 28);
 		panel_1.add(btnNewButton_2);
+		
+		try {
+			listarTodos();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	private static void cleanTable(JTable tabela) {

@@ -12,6 +12,12 @@ public class ProdutoController {
 		produtoBO.cadastrarProduto(produtoVO);
 
 	}
+	public void cadastroDeProdutoFuncionario(ProdutoVO produtoVO) throws Exception {
+		ProdutoBO produtoBO = new ProdutoBO();
+		produtoBO.cadastrarProdutoFuncionario(produtoVO);
+
+	}
+	
 
 	public List<ProdutoVO> pesquisarProdutoTodos() throws Exception {
 
@@ -53,6 +59,13 @@ public class ProdutoController {
 		ProdutoBO bo = new ProdutoBO();
 		
 		bo.cadastrarEntrada(produtoVO);
+		
+	}
+public void cadastroDeEntradaFuncionario(ProdutoVO produtoVO) throws Exception {
+		
+		ProdutoBO bo = new ProdutoBO();
+		
+		bo.cadastrarEntradaFuncionario(produtoVO);
 		
 	}
 

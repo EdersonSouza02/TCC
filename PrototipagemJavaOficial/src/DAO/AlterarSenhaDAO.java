@@ -19,7 +19,7 @@ public class AlterarSenhaDAO {
 	}
 	public void alterarSenha(AlterarSenhaVO senha) throws Exception  {
 
-		PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE USUARIO SET Senha_Usuario = AES_ENCRYPT(?,'chave') where Senha_Usuario = AES_ENCRYPT(?,'chave') and Nome_Usuario = ? and Email_Usuario = ? and Login_Usuario=?");
+		PreparedStatement preparedStatement = this.connection.prepareStatement("UPDATE USUARIO SET Senha_Usuario = MD5(?) where Senha_Usuario = MD5(?) and Nome_Usuario = ? and Email_Usuario = ? and Login_Usuario=?");
 		preparedStatement.setString(1, senha.getSenhaNova());
 		preparedStatement.setString(2, senha.getSenhaAtual());
 		preparedStatement.setString(3, senha.getNome());

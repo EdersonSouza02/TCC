@@ -301,6 +301,7 @@ public class ViewAlterarSenha extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					alterarSenha();
+					limpar();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -327,13 +328,8 @@ public class ViewAlterarSenha extends JFrame {
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
-				txtnome.setText("");
-				txtlogin.setText("");
-				txtemail.setText("");
-				txtsenha.setText("");
-				txtsenhanova.setText("");
-				txtnome.requestFocus(true);
+				limpar();
+
 			}
 		});
 		btnLimpar.setIcon(new ImageIcon(ViewAlterarSenha.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
@@ -376,5 +372,16 @@ public class ViewAlterarSenha extends JFrame {
 		txtsenhanova.setBorder(null);
 		txtsenhanova.setBounds(221, 451, 234, 28);
 		contentPane.add(txtsenhanova);
+	}
+	
+	
+	private void limpar() {
+
+		txtnome.setText("");
+		txtlogin.setText("");
+		txtemail.setText("");
+		txtsenha.setText("");
+		txtsenhanova.setText("");
+		txtnome.requestFocus(true);
 	}
 }

@@ -40,7 +40,7 @@ public class JavaMailApp {
 
 		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("portalviciogames123@gmail.com", "81298488e");
+				return new PasswordAuthentication("nemesysequipe@gmail.com", "Nemesys123");
 			}
 		});
 
@@ -49,17 +49,16 @@ public class JavaMailApp {
 
 		try {
 
-			
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("portalviciogames123@gmail.com")); // Remetente
+			message.setFrom(new InternetAddress("nemesysequipe@gmail.com")); // Remetente
 
 			Address[] toUser = InternetAddress // Destinatário(s)
 					.parse(email);
 
 			message.setRecipients(Message.RecipientType.TO, toUser);
 			message.setSubject("Recuperação de senha");// Assunto
-			message.setText("A equipe da Nemesys gostaria de informar que estamos enviando sua nova senha que foi solicitada./n A partir de agora sua nova senha é:" + senha);
+			message.setText("A equipe da Nemesys gostaria de informar que estamos enviando sua nova senha que foi solicitada.\nA partir de agora sua nova senha é: " + senha);
 			/** Método para enviar a mensagem criada */
 			Transport.send(message);
 			JOptionPane.showMessageDialog(null, "Email enviado com sucesso");

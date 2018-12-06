@@ -610,6 +610,7 @@ public class Fornecedor extends JFrame {
 				try {
 					alterarFornecedor();
 					pesquisarFornecedorTodos();
+					limpar();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -630,6 +631,8 @@ public class Fornecedor extends JFrame {
 
 				try {
 					cadastrarFonercecor();
+					pesquisarFornecedorTodos();
+					limpar();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -651,6 +654,8 @@ public class Fornecedor extends JFrame {
 					try {
 
 						excluirFornecedor();
+						pesquisarFornecedorTodos();
+						limpar();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -113,7 +113,6 @@ public class ViewMenuDesign extends JFrame {
 				}
 			}
 
-			PesquisarLembreteTodos();
 		} catch (Exception ex) {
 			System.err.println(ex);
 		}
@@ -135,6 +134,7 @@ public class ViewMenuDesign extends JFrame {
 		panel.setBackground(new Color(17, 144, 147));
 
 		JLabel lblSejaBemVindo = new JLabel("Seja bem Vindo!");
+		lblSejaBemVindo.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		lblSejaBemVindo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -407,28 +407,36 @@ public class ViewMenuDesign extends JFrame {
 				.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 						GroupLayout.PREFERRED_SIZE)
 				.addGroup(gl_panel.createSequentialGroup().addGap(24).addComponent(label_1)));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup().addGap(39).addComponent(label).addGap(18)
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-										.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(6).addComponent(separator_1, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(separator_3, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-						.addGap(24).addComponent(button, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(12).addComponent(button_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(12).addComponent(button_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(12).addComponent(button_4, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(12).addComponent(button_5, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(12)
-						.addComponent(btnRelatorios, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addGap(3)
-						.addComponent(separator_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(6).addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(31).addComponent(label_1)));
+		gl_panel.setVerticalGroup(
+				gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup().addGap(39).addComponent(label).addGap(18)
+								.addGroup(gl_panel
+										.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(separator_2, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addGap(6).addComponent(separator_1, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addComponent(separator_3, GroupLayout.PREFERRED_SIZE, 18,
+												GroupLayout.PREFERRED_SIZE))
+								.addGap(24)
+								.addComponent(button, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(12)
+								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(12)
+								.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(12)
+								.addComponent(button_4, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(12)
+								.addComponent(button_5, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(12)
+								.addComponent(btnRelatorios, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+								.addGap(3)
+								.addComponent(separator_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGap(6).addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGap(31).addComponent(label_1)));
 		panel.setLayout(gl_panel);
 		contentPane.add(panel_1);
 
@@ -463,6 +471,7 @@ public class ViewMenuDesign extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(ViewMenuDesign.class.getResource("/imagens/icons8-sair-25 (1).png")));
 
 		JLabel lblAlterarSenha = new JLabel("Alterar Senha");
+		lblAlterarSenha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblAlterarSenha.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -511,8 +520,17 @@ public class ViewMenuDesign extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				try {
-					deletarTodos();
-					PesquisarLembreteTodos();
+
+					int dialogButton = JOptionPane.YES_NO_OPTION;
+					int dialogResult = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Warning",
+							dialogButton);
+					if (dialogResult == JOptionPane.YES_OPTION) {
+
+						deletarTodos();
+						PesquisarLembreteTodos();
+
+					}
+
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -524,6 +542,13 @@ public class ViewMenuDesign extends JFrame {
 				.setIcon(new ImageIcon(ViewMenuDesign.class.getResource("/imagens/icons8-vassoura-filled-25.png")));
 		btnExcluirTodosLembretes.setBounds(490, 630, 246, 28);
 		contentPane.add(btnExcluirTodosLembretes);
+		
+		try {
+			PesquisarLembreteTodos();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	private LembreteVO getLinha() throws Exception {

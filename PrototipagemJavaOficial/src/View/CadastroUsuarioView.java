@@ -44,7 +44,7 @@ public class CadastroUsuarioView extends JFrame {
 	private JTextField txtlogin;
 	private JTextField txtemail;
 	private JPasswordField txtsenhaadm;
-	private JLabel lblNewLabel;
+	//private JLabel lblNewLabel;
 	private JPanel panel_2;
 
 	/**
@@ -233,7 +233,7 @@ public class CadastroUsuarioView extends JFrame {
 					validarSenhaAdm();
 				} catch (Exception e) {
 
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					//JOptionPane.showMessageDialog(null, e.getMessage());
 					e.printStackTrace();
 				}
 
@@ -248,6 +248,7 @@ public class CadastroUsuarioView extends JFrame {
 
 				if (txtsenhaadm.getText().equals("123") || controller.senhaAdministrador(txtsenhaadm.getText())) {
 					cadastraUsuario();
+					limpar();
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Senha do administrador incorreta");
@@ -260,9 +261,10 @@ public class CadastroUsuarioView extends JFrame {
 				UsuarioController uController = new UsuarioController();
 
 				uVO = getDados();
-				limpar();
+				
 
 				uController.cadastroDeUsuario(uVO);
+				limpar();
 			}
 
 			private UsuarioVO getDados() {
